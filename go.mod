@@ -1,4 +1,4 @@
-module github.com/DimTur/learning_platform/protos
+module github.com/DimTur/lp_protos
 
 go 1.23.0
 
