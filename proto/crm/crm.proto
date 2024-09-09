@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package auth.v1;
+package crm.v1;
 
-option go_package = "lp.sso.v1;ssov1";
+option go_package = "lp.crm.v1;crm1";
 
-service Auth {
+service CRM {
     rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-
+    rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
 }
 
 enum TaskType {
@@ -43,3 +43,10 @@ message CreateTaskResponse {
     Task task = 1; // The task to be created.
 }
 
+message GetTaskRequest {
+    int64 task_id = 1; // ID of the task to retrieve.
+}
+
+message GetTaskResponse {
+    Task task = 1; // The retrieved task.
+}
