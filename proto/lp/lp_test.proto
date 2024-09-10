@@ -20,6 +20,7 @@ message Channel {
     int64 created_by = 4; // User ID who creates the channel.
     int64 last_modified_by = 5; // ID of the user who modified the channel.
     bool public = 6; // Whether the channel is public or not.
+    repeated Plan plans = 7; // List of plans associated with the channel.
 }
 
 message Plan {
