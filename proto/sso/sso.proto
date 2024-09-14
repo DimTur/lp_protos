@@ -10,6 +10,7 @@ service Auth {
     rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
     rpc AddApp (AddAppRequest) returns (AddAppResponse);
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
 }
 
 message RegisterUserRequest {
@@ -54,4 +55,14 @@ message AddAppRequest {
 
 message AddAppResponse {
     int64 app_id = 1; // App ID of the added app.
+}
+
+message ValidateTokenRequest {
+    string access_token = 1; // Access token to validate.
+}
+
+message ValidateTokenResponse {
+    bool is_valid = 1; // Indicates whether the token is valid.
+    int64 user_id = 2; // User ID extracted from the token if valid.
+    string email = 3; // Email extracted from the token if valid.
 }

@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_RegisterUser_FullMethodName = "/auth.v1.Auth/RegisterUser"
-	Auth_LoginUser_FullMethodName    = "/auth.v1.Auth/LoginUser"
-	Auth_RefreshToken_FullMethodName = "/auth.v1.Auth/RefreshToken"
-	Auth_IsAdmin_FullMethodName      = "/auth.v1.Auth/IsAdmin"
-	Auth_AddApp_FullMethodName       = "/auth.v1.Auth/AddApp"
+	Auth_RegisterUser_FullMethodName  = "/auth.v1.Auth/RegisterUser"
+	Auth_LoginUser_FullMethodName     = "/auth.v1.Auth/LoginUser"
+	Auth_RefreshToken_FullMethodName  = "/auth.v1.Auth/RefreshToken"
+	Auth_IsAdmin_FullMethodName       = "/auth.v1.Auth/IsAdmin"
+	Auth_AddApp_FullMethodName        = "/auth.v1.Auth/AddApp"
+	Auth_ValidateToken_FullMethodName = "/auth.v1.Auth/ValidateToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -35,6 +36,7 @@ type AuthClient interface {
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error)
 	AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 }
 
 type authClient struct {
@@ -95,6 +97,16 @@ func (c *authClient) AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc
 	return out, nil
 }
 
+func (c *authClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ValidateTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_ValidateToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -104,6 +116,7 @@ type AuthServer interface {
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error)
 	AddApp(context.Context, *AddAppRequest) (*AddAppResponse, error)
+	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -128,6 +141,9 @@ func (UnimplementedAuthServer) IsAdmin(context.Context, *IsAdminRequest) (*IsAdm
 }
 func (UnimplementedAuthServer) AddApp(context.Context, *AddAppRequest) (*AddAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddApp not implemented")
+}
+func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -240,6 +256,24 @@ func _Auth_AddApp_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ValidateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ValidateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ValidateToken(ctx, req.(*ValidateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +300,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddApp",
 			Handler:    _Auth_AddApp_Handler,
+		},
+		{
+			MethodName: "ValidateToken",
+			Handler:    _Auth_ValidateToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
