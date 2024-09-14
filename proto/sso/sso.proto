@@ -64,5 +64,4 @@ message ValidateTokenRequest {
 message ValidateTokenResponse {
     bool is_valid = 1; // Indicates whether the token is valid.
     int64 user_id = 2; // User ID extracted from the token if valid.
-    string email = 3; // Email extracted from the token if valid.
 }
