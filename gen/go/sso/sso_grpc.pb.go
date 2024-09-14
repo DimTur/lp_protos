@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_RegisterUser_FullMethodName  = "/auth.v1.Auth/RegisterUser"
-	Auth_LoginUser_FullMethodName     = "/auth.v1.Auth/LoginUser"
-	Auth_RefreshToken_FullMethodName  = "/auth.v1.Auth/RefreshToken"
-	Auth_IsAdmin_FullMethodName       = "/auth.v1.Auth/IsAdmin"
-	Auth_AddApp_FullMethodName        = "/auth.v1.Auth/AddApp"
-	Auth_ValidateToken_FullMethodName = "/auth.v1.Auth/ValidateToken"
+	Auth_RegisterUser_FullMethodName = "/auth.v1.Auth/RegisterUser"
+	Auth_LoginUser_FullMethodName    = "/auth.v1.Auth/LoginUser"
+	Auth_RefreshToken_FullMethodName = "/auth.v1.Auth/RefreshToken"
+	Auth_IsAdmin_FullMethodName      = "/auth.v1.Auth/IsAdmin"
+	Auth_AddApp_FullMethodName       = "/auth.v1.Auth/AddApp"
+	Auth_AuthCheck_FullMethodName    = "/auth.v1.Auth/AuthCheck"
 )
 
 // AuthClient is the client API for Auth service.
@@ -36,7 +36,7 @@ type AuthClient interface {
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponse, error)
 	AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
-	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
+	AuthCheck(ctx context.Context, in *AuthCheckRequest, opts ...grpc.CallOption) (*AuthCheckResponse, error)
 }
 
 type authClient struct {
@@ -97,10 +97,10 @@ func (c *authClient) AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *authClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error) {
+func (c *authClient) AuthCheck(ctx context.Context, in *AuthCheckRequest, opts ...grpc.CallOption) (*AuthCheckResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ValidateTokenResponse)
-	err := c.cc.Invoke(ctx, Auth_ValidateToken_FullMethodName, in, out, cOpts...)
+	out := new(AuthCheckResponse)
+	err := c.cc.Invoke(ctx, Auth_AuthCheck_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ type AuthServer interface {
 	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponse, error)
 	AddApp(context.Context, *AddAppRequest) (*AddAppResponse, error)
-	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
+	AuthCheck(context.Context, *AuthCheckRequest) (*AuthCheckResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -142,8 +142,8 @@ func (UnimplementedAuthServer) IsAdmin(context.Context, *IsAdminRequest) (*IsAdm
 func (UnimplementedAuthServer) AddApp(context.Context, *AddAppRequest) (*AddAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddApp not implemented")
 }
-func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
+func (UnimplementedAuthServer) AuthCheck(context.Context, *AuthCheckRequest) (*AuthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthCheck not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -256,20 +256,20 @@ func _Auth_AddApp_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateTokenRequest)
+func _Auth_AuthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthCheckRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).ValidateToken(ctx, in)
+		return srv.(AuthServer).AuthCheck(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_ValidateToken_FullMethodName,
+		FullMethod: Auth_AuthCheck_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ValidateToken(ctx, req.(*ValidateTokenRequest))
+		return srv.(AuthServer).AuthCheck(ctx, req.(*AuthCheckRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,8 +302,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_AddApp_Handler,
 		},
 		{
-			MethodName: "ValidateToken",
-			Handler:    _Auth_ValidateToken_Handler,
+			MethodName: "AuthCheck",
+			Handler:    _Auth_AuthCheck_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
