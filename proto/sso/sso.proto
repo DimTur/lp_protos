@@ -4,22 +4,32 @@ package auth.v1;
 
 option go_package = "lp.sso.v1;ssov1";
 
-service Auth {
+service Sso {
     rpc RegisterUser (RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse);
+    rpc LoginViaTg (LoginViaTgRequest) returns (LoginViaTgResponse);
     rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
-    rpc AddApp (AddAppRequest) returns (AddAppResponse);
     rpc AuthCheck (AuthCheckRequest) returns (AuthCheckResponse);
+    rpc UpdateUserInfo (UpdateUserInfoRequest) returns (UpdateUserInfoResponse);
+    rpc CheckOTPAndLogIn (CheckOTPAndLogInRequest) returns (CheckOTPAndLogInResponse);
+    
+    rpc CreateLearningGroup (CreateLearningGroupRequest) returns (CreateLearningGroupResponse);
+    rpc GetLearningGroupByID (GetLearningGroupByIDRequest) returns (GetLearningGroupByIDResponse);
+    rpc UpdateLearningGroup (UpdateLearningGroupRequest) returns (UpdateLearningGroupResponse);
+    rpc DeleteLearningGroup (DeleteLearningGroupRequest) returns (DeleteLearningGroupResponse);
+    rpc GetLearningGroups (GetLearningGroupsRequest) returns (GetLearningGroupsResponse);
+    rpc IsGroupAdmin (IsGroupAdminRequest) returns (IsGroupAdminResponse);
 }
 
 message RegisterUserRequest {
     string email = 1; // Email of the user to register.
     string password = 2; // Password of the user to register.
+    string name = 3; // Name of the user to register
 }
 
 message RegisterUserResponse {
-    int64 user_id = 1; // User ID of the registered user.
+    bool success = 1;
 }
 
 message LoginUserRequest {
@@ -28,6 +38,25 @@ message LoginUserRequest {
 }
 
 message LoginUserResponse {
+    string access_token = 1; // Auth access token of the logged in user.
+    string refresh_token = 2; // Auth refresh token of the logged in user.
+}
+
+message LoginViaTgRequest {
+    string email = 1; // Email of the user to login.
+}
+
+message LoginViaTgResponse {
+    bool success = 1;
+    string info = 2;
+}
+
+message CheckOTPAndLogInRequest {
+    string email = 1; // Email of the user to login.
+    string code = 2; // OTP code to login.
+}
+
+message CheckOTPAndLogInResponse {
     string access_token = 1; // Auth access token of the logged in user.
     string refresh_token = 2; // Auth refresh token of the logged in user.
 }
@@ -41,20 +70,11 @@ message RefreshTokenResponse {
 }
 
 message IsAdminRequest {
-    int64 user_id = 1; // User ID to validate.
+    string user_id = 1; // User ID to validate.
 }
 
 message IsAdminResponse {
     bool is_admin = 1; // Indicates whether the user is an admin.
-}
-
-message AddAppRequest {
-    string name = 1; // App name.
-    string secret = 2; // Secret app code.
-}
-
-message AddAppResponse {
-    int64 app_id = 1; // App ID of the added app.
 }
 
 message AuthCheckRequest {
@@ -63,5 +83,100 @@ message AuthCheckRequest {
 
 message AuthCheckResponse {
     bool is_valid = 1; // Indicates whether the token is valid.
-    int64 user_id = 2; // User ID extracted from the token if valid.
+    string user_id = 2; // User ID extracted from the token if valid.
+}
+
+message UpdateUserInfoRequest {
+    string id = 1;
+    string email = 2; // Email of the user to register.
+    string name = 3; // Name of the user to register
+    string tg_link = 4;
+    string chat_id = 5;
+    bool is_admin = 6;
+}
+
+message UpdateUserInfoResponse {
+    bool success = 1;
+}
+
+message CreateLearningGroupRequest {
+    string name = 1;
+    string created_by = 2;
+    string modified_by = 3;
+    repeated string group_admins = 4;
+    repeated string learners = 5;
+}
+
+message CreateLearningGroupResponse {
+    bool success = 1;
+}
+
+message GetLearningGroupByIDRequest {
+    string id = 1;
+}
+message GetLearningGroupByIDResponse {
+	string id = 1;              
+    string name = 2;        
+    string created_by = 3;   
+    string modified_by = 4;        
+    repeated Learner learners = 5;   
+    repeated GroupAdmins group_admins = 6;
+}
+
+message Learner {
+    string id = 1;
+    string email = 2;
+    string name = 3;
+}
+
+message GroupAdmins {
+    string id = 1;
+    string email = 2;
+    string name = 3;
+}
+
+message UpdateLearningGroupRequest {
+    string id = 1;              
+    string name = 2;         
+    string modified_by = 3;        
+    repeated string group_admins = 4;
+    repeated string learners = 5;
+}
+
+message UpdateLearningGroupResponse {
+    bool success = 1;
+}
+
+message DeleteLearningGroupRequest {
+    string id = 1;
+}
+
+message DeleteLearningGroupResponse {
+    bool success = 1;
+}
+
+message GetLearningGroupsRequest {
+    string user_id = 1;
+}
+
+message GetLearningGroupsResponse {
+    repeated LearningGroup learning_groups = 1;
+}
+
+message LearningGroup {
+    string id = 1;              
+    string name = 2;        
+    string created_by = 3;   
+    string modified_by = 4;
+    string created = 5;
+    string updated = 6;
+}
+
+message IsGroupAdminRequest {
+    string user_id = 1;
+    string learning_group_id = 2;
+}
+
+message IsGroupAdminResponse {
+    bool is_group_admin = 1;
 }
