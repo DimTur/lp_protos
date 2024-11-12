@@ -212,7 +212,8 @@ message CreateChannelResponse {
 }
 
 message GetChannelRequest {
-    int64 id = 1; // ID of the channel to retrieve.
+    int64 channel_id = 1; // ID of the channel to retrieve.
+    repeated string learning_group_ids = 2;
 }
 
 message GetChannelResponse {
@@ -220,8 +221,9 @@ message GetChannelResponse {
 }
 
 message GetChannelsRequest {
-    int64 limit = 1; // Limit for pagination.
-    int64 offset = 2; // Offset for pagination.
+    repeated string learning_group_ids = 1;
+    int64 limit = 2; // Limit for pagination.
+    int64 offset = 3; // Offset for pagination.
 }
 
 message GetChannelsResponse {
