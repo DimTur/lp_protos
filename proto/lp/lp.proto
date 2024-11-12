@@ -231,10 +231,11 @@ message GetChannelsResponse {
 }
 
 message UpdateChannelRequest {
-    int64 id = 1; // ID of the channel.
-    optional string name = 2; // Name of the channel.
-    optional string description = 3; // Description of the channel.
-    string last_modified_by = 4; // ID of the user who modified the channel.
+    string user_id = 1; // ID of the user who modified the channel.
+    repeated string admin_in_lg_ids = 2;
+    int64 channel_id = 3; // ID of the channel.
+    optional string name = 4; // Name of the channel.
+    optional string description = 5; // Description of the channel.
 }
 
 message UpdateChannelResponse {
@@ -242,7 +243,8 @@ message UpdateChannelResponse {
 }
 
 message DeleteChannelRequest {
-    int64 id = 1; // ID of the channel to delete.
+    int64 channel_id = 1; // ID of the channel to delete.
+    repeated string admin_in_lg_ids = 2;
 }
 
 message DeleteChannelResponse {
