@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package lp.v1;
 
-import "google/protobuf/timestamp.proto";
-
 option go_package = "lp.lp.v1;lp1";
 
 service LearningPlatform {
@@ -53,8 +51,8 @@ message BasePage {
     int64 lesson_id = 2;
     string created_by = 3;
     string last_modified_by = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp modified = 6;
+    string created_at = 5;
+    string modified = 6;
     ContentType content_type = 7;
 }
 
@@ -185,8 +183,8 @@ message Channel {
     string description = 3; // Description of the channel.
     string created_by = 4; // User ID who creates the channel.
     string last_modified_by = 5; // ID of the user who modified the channel.
-    google.protobuf.Timestamp created_at = 6; // Timestamp when the channel was created.
-    google.protobuf.Timestamp modified = 7; // Timestamp when the channel was last modified.
+    string created_at = 6; // Timestamp when the channel was created.
+    string modified = 7; // Timestamp when the channel was last modified.
 }
 
 message ChannelWithPlans {
@@ -195,8 +193,8 @@ message ChannelWithPlans {
     string description = 3; // Description of the channel.
     string created_by = 4; // User ID who creates the channel.
     string last_modified_by = 5; // ID of the user who modified the channel.
-    google.protobuf.Timestamp created_at = 6; // Timestamp when the channel was created.
-    google.protobuf.Timestamp modified = 7; // Timestamp when the channel was last modified.
+    string created_at = 6; // Timestamp when the channel was created.
+    string modified = 7; // Timestamp when the channel was last modified.
     repeated Plan plans = 8;
 }
 
@@ -269,8 +267,8 @@ message Plan {
     string last_modified_by = 5; // ID of the user who modified the plan.
     bool is_published = 6; //
     bool public = 7; // 
-    google.protobuf.Timestamp created_at = 8; // Timestamp when the plan was created.
-    google.protobuf.Timestamp modified = 9; // Timestamp when the plan was last modified.
+    string created_at = 8; // Timestamp when the plan was created.
+    string modified = 9; // Timestamp when the plan was last modified.
 }
 
 message CreatePlanRequest {
@@ -339,8 +337,8 @@ message Lesson {
     string name = 2; // Name of the lesson.
     string created_by = 3; // User ID who creates the lesson.
     string last_modified_by = 4; // ID of the user who modified the lesson.
-    google.protobuf.Timestamp created_at = 5; // Timestamp when the lesson was created.
-    google.protobuf.Timestamp modified = 6; // Timestamp when the lesson was last modified.
+    string created_at = 5; // Timestamp when the lesson was created.
+    string modified = 6; // Timestamp when the lesson was last modified.
 }
 
 message CreateLessonRequest {
@@ -410,8 +408,8 @@ message QuestionPage {
     int64 lesson_id = 2; // Lesson ID within which the page is created.
     string created_by = 3; // User ID who creates the page.
     string last_modified_by = 4; // ID of the user who modified the page.
-    google.protobuf.Timestamp created_at = 5; // Timestamp when the page was created.
-    google.protobuf.Timestamp modified = 6; // Timestamp when the page was last modified.
+    string created_at = 5; // Timestamp when the page was created.
+    string modified = 6; // Timestamp when the page was last modified.
     ContentType content_type = 7; // Сontent type of page
     QuestionType question_type = 8; // Question type for question
     string question = 9; // Question.
