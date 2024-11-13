@@ -25,6 +25,7 @@ const (
 	LearningPlatform_UpdateChannel_FullMethodName       = "/lp.v1.LearningPlatform/UpdateChannel"
 	LearningPlatform_DeleteChannel_FullMethodName       = "/lp.v1.LearningPlatform/DeleteChannel"
 	LearningPlatform_ShareChannelToGroup_FullMethodName = "/lp.v1.LearningPlatform/ShareChannelToGroup"
+	LearningPlatform_IsChannelCreator_FullMethodName    = "/lp.v1.LearningPlatform/IsChannelCreator"
 	LearningPlatform_CreatePlan_FullMethodName          = "/lp.v1.LearningPlatform/CreatePlan"
 	LearningPlatform_GetPlan_FullMethodName             = "/lp.v1.LearningPlatform/GetPlan"
 	LearningPlatform_GetPlans_FullMethodName            = "/lp.v1.LearningPlatform/GetPlans"
@@ -57,6 +58,7 @@ type LearningPlatformClient interface {
 	UpdateChannel(ctx context.Context, in *UpdateChannelRequest, opts ...grpc.CallOption) (*UpdateChannelResponse, error)
 	DeleteChannel(ctx context.Context, in *DeleteChannelRequest, opts ...grpc.CallOption) (*DeleteChannelResponse, error)
 	ShareChannelToGroup(ctx context.Context, in *ShareChannelToGroupRequest, opts ...grpc.CallOption) (*ShareChannelToGroupResponse, error)
+	IsChannelCreator(ctx context.Context, in *IsChannelCreatorRequest, opts ...grpc.CallOption) (*IsChannelCreatorResponse, error)
 	CreatePlan(ctx context.Context, in *CreatePlanRequest, opts ...grpc.CallOption) (*CreatePlanResponse, error)
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
 	GetPlans(ctx context.Context, in *GetPlansRequest, opts ...grpc.CallOption) (*GetPlansResponse, error)
@@ -141,6 +143,16 @@ func (c *learningPlatformClient) ShareChannelToGroup(ctx context.Context, in *Sh
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ShareChannelToGroupResponse)
 	err := c.cc.Invoke(ctx, LearningPlatform_ShareChannelToGroup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) IsChannelCreator(ctx context.Context, in *IsChannelCreatorRequest, opts ...grpc.CallOption) (*IsChannelCreatorResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsChannelCreatorResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_IsChannelCreator_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,6 +369,7 @@ type LearningPlatformServer interface {
 	UpdateChannel(context.Context, *UpdateChannelRequest) (*UpdateChannelResponse, error)
 	DeleteChannel(context.Context, *DeleteChannelRequest) (*DeleteChannelResponse, error)
 	ShareChannelToGroup(context.Context, *ShareChannelToGroupRequest) (*ShareChannelToGroupResponse, error)
+	IsChannelCreator(context.Context, *IsChannelCreatorRequest) (*IsChannelCreatorResponse, error)
 	CreatePlan(context.Context, *CreatePlanRequest) (*CreatePlanResponse, error)
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
 	GetPlans(context.Context, *GetPlansRequest) (*GetPlansResponse, error)
@@ -404,6 +417,9 @@ func (UnimplementedLearningPlatformServer) DeleteChannel(context.Context, *Delet
 }
 func (UnimplementedLearningPlatformServer) ShareChannelToGroup(context.Context, *ShareChannelToGroupRequest) (*ShareChannelToGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ShareChannelToGroup not implemented")
+}
+func (UnimplementedLearningPlatformServer) IsChannelCreator(context.Context, *IsChannelCreatorRequest) (*IsChannelCreatorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsChannelCreator not implemented")
 }
 func (UnimplementedLearningPlatformServer) CreatePlan(context.Context, *CreatePlanRequest) (*CreatePlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePlan not implemented")
@@ -590,6 +606,24 @@ func _LearningPlatform_ShareChannelToGroup_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LearningPlatformServer).ShareChannelToGroup(ctx, req.(*ShareChannelToGroupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_IsChannelCreator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsChannelCreatorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).IsChannelCreator(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_IsChannelCreator_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).IsChannelCreator(ctx, req.(*IsChannelCreatorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -984,6 +1018,10 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ShareChannelToGroup",
 			Handler:    _LearningPlatform_ShareChannelToGroup_Handler,
+		},
+		{
+			MethodName: "IsChannelCreator",
+			Handler:    _LearningPlatform_IsChannelCreator_Handler,
 		},
 		{
 			MethodName: "CreatePlan",

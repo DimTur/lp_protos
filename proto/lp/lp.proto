@@ -11,6 +11,7 @@ service LearningPlatform {
     rpc UpdateChannel (UpdateChannelRequest) returns (UpdateChannelResponse);
     rpc DeleteChannel (DeleteChannelRequest) returns (DeleteChannelResponse);
     rpc ShareChannelToGroup (ShareChannelToGroupRequest) returns (ShareChannelToGroupResponse);
+    rpc IsChannelCreator (IsChannelCreatorRequest) returns (IsChannelCreatorResponse);
 
     rpc CreatePlan (CreatePlanRequest) returns (CreatePlanResponse);
     rpc GetPlan (GetPlanRequest) returns (GetPlanResponse);
@@ -37,6 +38,16 @@ service LearningPlatform {
 
     rpc CreateAttempt (CreateAttemptRequest) returns (CreateAttemptResponse);
 }
+
+message IsChannelCreatorRequest {
+    string user_id = 1;
+}
+
+message IsChannelCreatorResponse {
+    bool is_creator = 1;
+}
+
+
 
 enum ContentType {
     CONTENT_TYPE_UNSPECIFIED = 0;
