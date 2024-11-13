@@ -41,13 +41,12 @@ service LearningPlatform {
 
 message IsChannelCreatorRequest {
     string user_id = 1;
+    int64 channel_id = 2;
 }
 
 message IsChannelCreatorResponse {
     bool is_creator = 1;
 }
-
-
 
 enum ContentType {
     CONTENT_TYPE_UNSPECIFIED = 0;
