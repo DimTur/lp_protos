@@ -20,6 +20,8 @@ service Sso {
     rpc DeleteLearningGroup (DeleteLearningGroupRequest) returns (DeleteLearningGroupResponse);
     rpc GetLearningGroups (GetLearningGroupsRequest) returns (GetLearningGroupsResponse);
     rpc IsGroupAdmin (IsGroupAdminRequest) returns (IsGroupAdminResponse);
+    rpc IsUserGroupAdminIn (IsUserGroupAdminInRequest) returns (IsUserGroupAdminInResponse);
+    rpc IsUserLearnerIn (IsUserLearnereInRequest) returns (RegisterUserResponse);
 }
 
 message RegisterUserRequest {
@@ -183,4 +185,20 @@ message IsGroupAdminRequest {
 
 message IsGroupAdminResponse {
     bool is_group_admin = 1;
+}
+
+message IsUserGroupAdminInRequest {
+    string user_id = 1;
+}
+
+message IsUserGroupAdminInResponse {
+    repeated string learning_group_ids = 1;
+}
+
+message IsUserLearnereInRequest {
+    string user_id = 1;
+}
+
+message IsUserLearnereInResponse {
+    repeated string learning_group_ids = 1;
 }

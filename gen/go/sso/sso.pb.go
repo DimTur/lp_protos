@@ -1789,6 +1789,194 @@ func (x *IsGroupAdminResponse) GetIsGroupAdmin() bool {
 	return false
 }
 
+type IsUserGroupAdminInRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *IsUserGroupAdminInRequest) Reset() {
+	*x = IsUserGroupAdminInRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sso_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsUserGroupAdminInRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUserGroupAdminInRequest) ProtoMessage() {}
+
+func (x *IsUserGroupAdminInRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUserGroupAdminInRequest.ProtoReflect.Descriptor instead.
+func (*IsUserGroupAdminInRequest) Descriptor() ([]byte, []int) {
+	return file_sso_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *IsUserGroupAdminInRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type IsUserGroupAdminInResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	LearningGroupIds []string `protobuf:"bytes,1,rep,name=learning_group_ids,json=learningGroupIds,proto3" json:"learning_group_ids,omitempty"`
+}
+
+func (x *IsUserGroupAdminInResponse) Reset() {
+	*x = IsUserGroupAdminInResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sso_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsUserGroupAdminInResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUserGroupAdminInResponse) ProtoMessage() {}
+
+func (x *IsUserGroupAdminInResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUserGroupAdminInResponse.ProtoReflect.Descriptor instead.
+func (*IsUserGroupAdminInResponse) Descriptor() ([]byte, []int) {
+	return file_sso_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *IsUserGroupAdminInResponse) GetLearningGroupIds() []string {
+	if x != nil {
+		return x.LearningGroupIds
+	}
+	return nil
+}
+
+type IsUserLearnereInRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+}
+
+func (x *IsUserLearnereInRequest) Reset() {
+	*x = IsUserLearnereInRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sso_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsUserLearnereInRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUserLearnereInRequest) ProtoMessage() {}
+
+func (x *IsUserLearnereInRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUserLearnereInRequest.ProtoReflect.Descriptor instead.
+func (*IsUserLearnereInRequest) Descriptor() ([]byte, []int) {
+	return file_sso_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *IsUserLearnereInRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type IsUserLearnereInResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	LearningGroupIds []string `protobuf:"bytes,1,rep,name=learning_group_ids,json=learningGroupIds,proto3" json:"learning_group_ids,omitempty"`
+}
+
+func (x *IsUserLearnereInResponse) Reset() {
+	*x = IsUserLearnereInResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sso_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IsUserLearnereInResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUserLearnereInResponse) ProtoMessage() {}
+
+func (x *IsUserLearnereInResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUserLearnereInResponse.ProtoReflect.Descriptor instead.
+func (*IsUserLearnereInResponse) Descriptor() ([]byte, []int) {
+	return file_sso_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *IsUserLearnereInResponse) GetLearningGroupIds() []string {
+	if x != nil {
+		return x.LearningGroupIds
+	}
+	return nil
+}
+
 var File_sso_proto protoreflect.FileDescriptor
 
 var file_sso_proto_rawDesc = []byte{
@@ -1965,7 +2153,23 @@ var file_sso_proto_rawDesc = []byte{
 	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x0e, 0x69, 0x73,
 	0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x08, 0x52, 0x0c, 0x69, 0x73, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e,
-	0x32, 0x8c, 0x09, 0x0a, 0x03, 0x53, 0x73, 0x6f, 0x12, 0x4b, 0x0a, 0x0c, 0x52, 0x65, 0x67, 0x69,
+	0x22, 0x34, 0x0a, 0x19, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
+	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x4a, 0x0a, 0x1a, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x12, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67,
+	0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x10, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49,
+	0x64, 0x73, 0x22, 0x32, 0x0a, 0x17, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x65, 0x61, 0x72,
+	0x6e, 0x65, 0x72, 0x65, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a,
+	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x48, 0x0a, 0x18, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72,
+	0x4c, 0x65, 0x61, 0x72, 0x6e, 0x65, 0x72, 0x65, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2c, 0x0a, 0x12, 0x6c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67, 0x5f, 0x67,
+	0x72, 0x6f, 0x75, 0x70, 0x5f, 0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x10,
+	0x6c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73,
+	0x32, 0xbf, 0x0a, 0x0a, 0x03, 0x53, 0x73, 0x6f, 0x12, 0x4b, 0x0a, 0x0c, 0x52, 0x65, 0x67, 0x69,
 	0x73, 0x74, 0x65, 0x72, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1c, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e,
 	0x76, 0x31, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x55, 0x73, 0x65, 0x72, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31,
@@ -2037,9 +2241,20 @@ var file_sso_proto_rawDesc = []byte{
 	0x69, 0x6e, 0x12, 0x1c, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x73, 0x47,
 	0x72, 0x6f, 0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x1d, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x73, 0x47, 0x72, 0x6f,
-	0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
-	0x11, 0x5a, 0x0f, 0x6c, 0x70, 0x2e, 0x73, 0x73, 0x6f, 0x2e, 0x76, 0x31, 0x3b, 0x73, 0x73, 0x6f,
-	0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x5d, 0x0a, 0x12, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x64,
+	0x6d, 0x69, 0x6e, 0x49, 0x6e, 0x12, 0x22, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x2e,
+	0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x61, 0x75, 0x74, 0x68,
+	0x2e, 0x76, 0x31, 0x2e, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52,
+	0x0a, 0x0f, 0x49, 0x73, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x65, 0x61, 0x72, 0x6e, 0x65, 0x72, 0x49,
+	0x6e, 0x12, 0x20, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x73, 0x55, 0x73,
+	0x65, 0x72, 0x4c, 0x65, 0x61, 0x72, 0x6e, 0x65, 0x72, 0x65, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x11, 0x5a, 0x0f, 0x6c, 0x70, 0x2e, 0x73, 0x73, 0x6f, 0x2e, 0x76, 0x31, 0x3b,
+	0x73, 0x73, 0x6f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2054,7 +2269,7 @@ func file_sso_proto_rawDescGZIP() []byte {
 	return file_sso_proto_rawDescData
 }
 
-var file_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
+var file_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_sso_proto_goTypes = []any{
 	(*RegisterUserRequest)(nil),          // 0: auth.v1.RegisterUserRequest
 	(*RegisterUserResponse)(nil),         // 1: auth.v1.RegisterUserResponse
@@ -2087,6 +2302,10 @@ var file_sso_proto_goTypes = []any{
 	(*LearningGroup)(nil),                // 28: auth.v1.LearningGroup
 	(*IsGroupAdminRequest)(nil),          // 29: auth.v1.IsGroupAdminRequest
 	(*IsGroupAdminResponse)(nil),         // 30: auth.v1.IsGroupAdminResponse
+	(*IsUserGroupAdminInRequest)(nil),    // 31: auth.v1.IsUserGroupAdminInRequest
+	(*IsUserGroupAdminInResponse)(nil),   // 32: auth.v1.IsUserGroupAdminInResponse
+	(*IsUserLearnereInRequest)(nil),      // 33: auth.v1.IsUserLearnereInRequest
+	(*IsUserLearnereInResponse)(nil),     // 34: auth.v1.IsUserLearnereInResponse
 }
 var file_sso_proto_depIdxs = []int32{
 	20, // 0: auth.v1.GetLearningGroupByIDResponse.learners:type_name -> auth.v1.Learner
@@ -2106,22 +2325,26 @@ var file_sso_proto_depIdxs = []int32{
 	24, // 14: auth.v1.Sso.DeleteLearningGroup:input_type -> auth.v1.DeleteLearningGroupRequest
 	26, // 15: auth.v1.Sso.GetLearningGroups:input_type -> auth.v1.GetLearningGroupsRequest
 	29, // 16: auth.v1.Sso.IsGroupAdmin:input_type -> auth.v1.IsGroupAdminRequest
-	1,  // 17: auth.v1.Sso.RegisterUser:output_type -> auth.v1.RegisterUserResponse
-	3,  // 18: auth.v1.Sso.LoginUser:output_type -> auth.v1.LoginUserResponse
-	5,  // 19: auth.v1.Sso.LoginViaTg:output_type -> auth.v1.LoginViaTgResponse
-	9,  // 20: auth.v1.Sso.RefreshToken:output_type -> auth.v1.RefreshTokenResponse
-	11, // 21: auth.v1.Sso.IsAdmin:output_type -> auth.v1.IsAdminResponse
-	13, // 22: auth.v1.Sso.AuthCheck:output_type -> auth.v1.AuthCheckResponse
-	15, // 23: auth.v1.Sso.UpdateUserInfo:output_type -> auth.v1.UpdateUserInfoResponse
-	7,  // 24: auth.v1.Sso.CheckOTPAndLogIn:output_type -> auth.v1.CheckOTPAndLogInResponse
-	17, // 25: auth.v1.Sso.CreateLearningGroup:output_type -> auth.v1.CreateLearningGroupResponse
-	19, // 26: auth.v1.Sso.GetLearningGroupByID:output_type -> auth.v1.GetLearningGroupByIDResponse
-	23, // 27: auth.v1.Sso.UpdateLearningGroup:output_type -> auth.v1.UpdateLearningGroupResponse
-	25, // 28: auth.v1.Sso.DeleteLearningGroup:output_type -> auth.v1.DeleteLearningGroupResponse
-	27, // 29: auth.v1.Sso.GetLearningGroups:output_type -> auth.v1.GetLearningGroupsResponse
-	30, // 30: auth.v1.Sso.IsGroupAdmin:output_type -> auth.v1.IsGroupAdminResponse
-	17, // [17:31] is the sub-list for method output_type
-	3,  // [3:17] is the sub-list for method input_type
+	31, // 17: auth.v1.Sso.IsUserGroupAdminIn:input_type -> auth.v1.IsUserGroupAdminInRequest
+	33, // 18: auth.v1.Sso.IsUserLearnerIn:input_type -> auth.v1.IsUserLearnereInRequest
+	1,  // 19: auth.v1.Sso.RegisterUser:output_type -> auth.v1.RegisterUserResponse
+	3,  // 20: auth.v1.Sso.LoginUser:output_type -> auth.v1.LoginUserResponse
+	5,  // 21: auth.v1.Sso.LoginViaTg:output_type -> auth.v1.LoginViaTgResponse
+	9,  // 22: auth.v1.Sso.RefreshToken:output_type -> auth.v1.RefreshTokenResponse
+	11, // 23: auth.v1.Sso.IsAdmin:output_type -> auth.v1.IsAdminResponse
+	13, // 24: auth.v1.Sso.AuthCheck:output_type -> auth.v1.AuthCheckResponse
+	15, // 25: auth.v1.Sso.UpdateUserInfo:output_type -> auth.v1.UpdateUserInfoResponse
+	7,  // 26: auth.v1.Sso.CheckOTPAndLogIn:output_type -> auth.v1.CheckOTPAndLogInResponse
+	17, // 27: auth.v1.Sso.CreateLearningGroup:output_type -> auth.v1.CreateLearningGroupResponse
+	19, // 28: auth.v1.Sso.GetLearningGroupByID:output_type -> auth.v1.GetLearningGroupByIDResponse
+	23, // 29: auth.v1.Sso.UpdateLearningGroup:output_type -> auth.v1.UpdateLearningGroupResponse
+	25, // 30: auth.v1.Sso.DeleteLearningGroup:output_type -> auth.v1.DeleteLearningGroupResponse
+	27, // 31: auth.v1.Sso.GetLearningGroups:output_type -> auth.v1.GetLearningGroupsResponse
+	30, // 32: auth.v1.Sso.IsGroupAdmin:output_type -> auth.v1.IsGroupAdminResponse
+	32, // 33: auth.v1.Sso.IsUserGroupAdminIn:output_type -> auth.v1.IsUserGroupAdminInResponse
+	1,  // 34: auth.v1.Sso.IsUserLearnerIn:output_type -> auth.v1.RegisterUserResponse
+	19, // [19:35] is the sub-list for method output_type
+	3,  // [3:19] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -2505,6 +2728,54 @@ func file_sso_proto_init() {
 				return nil
 			}
 		}
+		file_sso_proto_msgTypes[31].Exporter = func(v any, i int) any {
+			switch v := v.(*IsUserGroupAdminInRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sso_proto_msgTypes[32].Exporter = func(v any, i int) any {
+			switch v := v.(*IsUserGroupAdminInResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sso_proto_msgTypes[33].Exporter = func(v any, i int) any {
+			switch v := v.(*IsUserLearnereInRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sso_proto_msgTypes[34].Exporter = func(v any, i int) any {
+			switch v := v.(*IsUserLearnereInResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2512,7 +2783,7 @@ func file_sso_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sso_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   31,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
