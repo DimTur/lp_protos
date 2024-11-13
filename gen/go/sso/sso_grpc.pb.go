@@ -56,7 +56,7 @@ type SsoClient interface {
 	GetLearningGroups(ctx context.Context, in *GetLearningGroupsRequest, opts ...grpc.CallOption) (*GetLearningGroupsResponse, error)
 	IsGroupAdmin(ctx context.Context, in *IsGroupAdminRequest, opts ...grpc.CallOption) (*IsGroupAdminResponse, error)
 	IsUserGroupAdminIn(ctx context.Context, in *IsUserGroupAdminInRequest, opts ...grpc.CallOption) (*IsUserGroupAdminInResponse, error)
-	IsUserLearnerIn(ctx context.Context, in *IsUserLearnereInRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
+	IsUserLearnerIn(ctx context.Context, in *IsUserLearnereInRequest, opts ...grpc.CallOption) (*IsUserLearnereInResponse, error)
 }
 
 type ssoClient struct {
@@ -217,9 +217,9 @@ func (c *ssoClient) IsUserGroupAdminIn(ctx context.Context, in *IsUserGroupAdmin
 	return out, nil
 }
 
-func (c *ssoClient) IsUserLearnerIn(ctx context.Context, in *IsUserLearnereInRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error) {
+func (c *ssoClient) IsUserLearnerIn(ctx context.Context, in *IsUserLearnereInRequest, opts ...grpc.CallOption) (*IsUserLearnereInResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RegisterUserResponse)
+	out := new(IsUserLearnereInResponse)
 	err := c.cc.Invoke(ctx, Sso_IsUserLearnerIn_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -246,7 +246,7 @@ type SsoServer interface {
 	GetLearningGroups(context.Context, *GetLearningGroupsRequest) (*GetLearningGroupsResponse, error)
 	IsGroupAdmin(context.Context, *IsGroupAdminRequest) (*IsGroupAdminResponse, error)
 	IsUserGroupAdminIn(context.Context, *IsUserGroupAdminInRequest) (*IsUserGroupAdminInResponse, error)
-	IsUserLearnerIn(context.Context, *IsUserLearnereInRequest) (*RegisterUserResponse, error)
+	IsUserLearnerIn(context.Context, *IsUserLearnereInRequest) (*IsUserLearnereInResponse, error)
 	mustEmbedUnimplementedSsoServer()
 }
 
@@ -302,7 +302,7 @@ func (UnimplementedSsoServer) IsGroupAdmin(context.Context, *IsGroupAdminRequest
 func (UnimplementedSsoServer) IsUserGroupAdminIn(context.Context, *IsUserGroupAdminInRequest) (*IsUserGroupAdminInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsUserGroupAdminIn not implemented")
 }
-func (UnimplementedSsoServer) IsUserLearnerIn(context.Context, *IsUserLearnereInRequest) (*RegisterUserResponse, error) {
+func (UnimplementedSsoServer) IsUserLearnerIn(context.Context, *IsUserLearnereInRequest) (*IsUserLearnereInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsUserLearnerIn not implemented")
 }
 func (UnimplementedSsoServer) mustEmbedUnimplementedSsoServer() {}
