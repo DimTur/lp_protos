@@ -12,6 +12,7 @@ service LearningPlatform {
     rpc DeleteChannel (DeleteChannelRequest) returns (DeleteChannelResponse);
     rpc ShareChannelToGroup (ShareChannelToGroupRequest) returns (ShareChannelToGroupResponse);
     rpc IsChannelCreator (IsChannelCreatorRequest) returns (IsChannelCreatorResponse);
+    rpc GetLearningGroupsShareWithChannel (GetLearningGroupsShareWithChannelRequest) returns (GetLearningGroupsShareWithChannelResponse);
 
     rpc CreatePlan (CreatePlanRequest) returns (CreatePlanResponse);
     rpc GetPlan (GetPlanRequest) returns (GetPlanResponse);
@@ -38,6 +39,15 @@ service LearningPlatform {
 
     rpc CreateAttempt (CreateAttemptRequest) returns (CreateAttemptResponse);
 }
+
+message GetLearningGroupsShareWithChannelRequest {
+    int64 channel_id = 1; 
+}
+
+message GetLearningGroupsShareWithChannelResponse {
+    repeated string learning_group_ids = 1;
+}
+
 
 message IsChannelCreatorRequest {
     string user_id = 1;
@@ -213,6 +223,7 @@ message CreateChannelRequest {
     string description = 2; // Description of the channel.
     string created_by = 3; // User ID who creates the channel.
     string last_modified_by = 4; // ID of the user who modified the channel.
+    string learning_group_id = 5;
 }
 
 message CreateChannelResponse {
@@ -221,7 +232,6 @@ message CreateChannelResponse {
 
 message GetChannelRequest {
     int64 channel_id = 1; // ID of the channel to retrieve.
-    repeated string learning_group_ids = 2;
 }
 
 message GetChannelResponse {
@@ -240,10 +250,9 @@ message GetChannelsResponse {
 
 message UpdateChannelRequest {
     string user_id = 1; // ID of the user who modified the channel.
-    repeated string admin_in_lg_ids = 2;
-    int64 channel_id = 3; // ID of the channel.
-    optional string name = 4; // Name of the channel.
-    optional string description = 5; // Description of the channel.
+    int64 channel_id = 2; // ID of the channel.
+    optional string name = 3; // Name of the channel.
+    optional string description = 4; // Description of the channel.
 }
 
 message UpdateChannelResponse {
@@ -252,7 +261,6 @@ message UpdateChannelResponse {
 
 message DeleteChannelRequest {
     int64 channel_id = 1; // ID of the channel to delete.
-    repeated string admin_in_lg_ids = 2;
 }
 
 message DeleteChannelResponse {
@@ -261,7 +269,6 @@ message DeleteChannelResponse {
 
 message ShareChannelToGroupRequest {
     int64 channel_id = 1;
-    repeated string lgroups_ids = 2;
     string created_by = 3;
 }
 
