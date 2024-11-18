@@ -20,6 +20,7 @@ service LearningPlatform {
     rpc UpdatePlan (UpdatePlanRequest) returns (UpdatePlanResponse);
     rpc DeletePlan (DeletePlanRequest) returns (DeletePlanResponse);
     rpc SharePlanWithUsers (SharePlanWithUsersRequest) returns (SharePlanWithUsersResponse);
+    rpc IsUserShareWithPlan (IsUserShareWithPlanRequest) returns (IsUserShareWithPlanResponse);
 
     rpc CreateLesson (CreateLessonRequest) returns (CreateLessonResponse);
     rpc GetLesson (GetLessonRequest) returns (GetLessonResponse);
@@ -39,6 +40,16 @@ service LearningPlatform {
 
     rpc CreateAttempt (CreateAttemptRequest) returns (CreateAttemptResponse);
 }
+
+message IsUserShareWithPlanRequest {
+    string user_id = 1;
+    int64 plan_id = 2;
+}
+
+message IsUserShareWithPlanResponse {
+    bool is_share = 1;
+}
+
 
 message GetLearningGroupsShareWithChannelRequest {
     int64 channel_id = 1; 
@@ -293,8 +304,7 @@ message CreatePlanRequest {
     string name = 1; // Name of the plan.
     string description = 2; // Description of the plan.
     string created_by = 3; // User ID who creates the plan.
-    string last_modified_by = 4; // ID of the user who modified the plan.
-    int64 channel_id = 5; // Сhannel ID within which the plan is created.
+    int64 channel_id = 4; // Сhannel ID within which the plan is created.
 }
 
 message CreatePlanResponse {
