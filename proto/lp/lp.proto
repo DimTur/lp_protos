@@ -406,15 +406,15 @@ message GetLessonsResponse {
 }
 
 message UpdateLessonRequest {
-    int64 lesson_id = 1; // ID of the lesson.
-    string name = 2; // Name of the lesson.
-    string description = 3; // Description of the lesson.
-    string last_modified_by = 4; // ID of the user who modified the lesson.
+    int64 plan_id = 1; // ID of the plan that includes the lesson.
+    int64 lesson_id = 2; // ID of the lesson.
+    string name = 3; // Name of the lesson.
+    string description = 4; // Description of the lesson.
+    string last_modified_by = 5; // ID of the user who modified the lesson.
 }
 
 message UpdateLessonResponse {
-    int64 lesson_id = 1; // ID of the updated lesson.
-    int64 plan_id = 2; // ID of the plan that includes the lesson.
+    int64 id = 1; // ID of the new lesson.
 }
 
 message DeleteLessonRequest {
