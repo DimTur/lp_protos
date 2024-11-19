@@ -380,7 +380,6 @@ message CreateLessonRequest {
     string created_by = 3; // User ID who creates the lesson.
     string last_modified_by = 4; // ID of the user who modified the lesson.
     int64 plan_id = 5; // Plan ID within which the lesson is created.
-    int64 channel_id = 6;
 }
 
 message CreateLessonResponse {
@@ -390,7 +389,6 @@ message CreateLessonResponse {
 message GetLessonRequest {
     int64 lesson_id = 1; // ID of the lesson to retrieve.
     int64 plan_id = 2; // Plan ID within which the lesson is created.
-    int64 channel_id = 3;
 }
 
 message GetLessonResponse {
@@ -398,11 +396,9 @@ message GetLessonResponse {
 }
 
 message GetLessonsRequest {
-    string user_id = 1;
-    int64 plan_id = 2; // ID of the plan that includes the lesson.
-    int64 channel_id = 3;
-    int64 limit = 4; // Limit for pagination.
-    int64 offset = 5; // Offset for pagination.
+    int64 plan_id = 1; // ID of the plan that includes the lesson.
+    int64 limit = 2; // Limit for pagination.
+    int64 offset = 3; // Offset for pagination.
 }
 
 message GetLessonsResponse {
@@ -411,20 +407,19 @@ message GetLessonsResponse {
 
 message UpdateLessonRequest {
     int64 lesson_id = 1; // ID of the lesson.
-    int64 plan_id = 2; // Plan ID within which the lesson is created.
-    int64 channel_id = 3;
-    optional string name = 4; // Name of the lesson.
-    string last_modified_by = 5; // ID of the user who modified the lesson.
+    string name = 2; // Name of the lesson.
+    string description = 3; // Description of the lesson.
+    string last_modified_by = 4; // ID of the user who modified the lesson.
 }
 
 message UpdateLessonResponse {
-    int64 id = 1; // ID of the updated lesson.
+    int64 lesson_id = 1; // ID of the updated lesson.
+    int64 plan_id = 2; // ID of the plan that includes the lesson.
 }
 
 message DeleteLessonRequest {
     int64 lesson_id = 1; // ID of the lesson to delete.
     int64 plan_id = 2; // Plan ID within which the lesson is created.
-    int64 channel_id = 3;
 }
 
 message DeleteLessonResponse {
