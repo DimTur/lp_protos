@@ -179,7 +179,8 @@ message GetPagesResponse {
 }
 
 message DeletePageRequest {
-    int64 id = 1; // ID of the page to delete.
+    int64 page_id = 1;
+    int64 lesson_id = 2;
 }
 
 message DeletePageResponse {
