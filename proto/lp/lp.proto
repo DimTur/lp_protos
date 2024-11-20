@@ -28,10 +28,16 @@ service LearningPlatform {
     rpc UpdateLesson (UpdateLessonRequest) returns (UpdateLessonResponse);
     rpc DeleteLesson (DeleteLessonRequest) returns (DeleteLessonResponse);
 
-    rpc CreatePage (CreatePageRequest) returns (CreatePageResponse);
-    rpc GetPage (GetPageRequest) returns (GetPageResponse);
+    rpc CreateImagePage (CreateImagePageRequest) returns (CreateImagePageResponse);
+    rpc CreatePDFPage (CreatePDFPageRequest) returns (CreatePDFPageResponse);
+    rpc CreateVideoPage (CreateVideoPageRequest) returns (CreateVideoPageResponse);
+    rpc GetImagePage (GetImagePageRequest) returns (GetImagePageResponse);
+    rpc GetVideoPage (GetVideoPageRequest) returns (GetVideoPageResponse);
+    rpc GetPDFPage (GetPDFPageRequest) returns (GetPDFPageResponse);
     rpc GetPages (GetPagesRequest) returns (GetPagesResponse);
-    rpc UpdatePage (UpdatePageRequest) returns (UpdatePageResponse);
+    rpc UpdateImagePage (UpdateImagePageRequest) returns (UpdateImagePageResponse);
+    rpc UpdatePDFPage (UpdatePDFPageRequest) returns (UpdatePDFPageResponse);
+    rpc UpdateVideoPage (UpdateVideoPageRequest) returns (UpdateVideoPageResponse);
     rpc DeletePage (DeletePageRequest) returns (DeletePageResponse);
 
     rpc CreateQuestionPage (CreateQuestionPageRequest) returns (CreateQuestionPageResponse);
@@ -39,34 +45,6 @@ service LearningPlatform {
     rpc UpdateQuestionPage (UpdateQuestionPageRequest) returns (UpdateQuestionPageResponse);
 
     rpc CreateAttempt (CreateAttemptRequest) returns (CreateAttemptResponse);
-}
-
-message IsUserShareWithPlanRequest {
-    string user_id = 1;
-    int64 plan_id = 2;
-}
-
-message IsUserShareWithPlanResponse {
-    bool is_share = 1;
-}
-
-
-message GetLearningGroupsShareWithChannelRequest {
-    int64 channel_id = 1; 
-}
-
-message GetLearningGroupsShareWithChannelResponse {
-    repeated string learning_group_ids = 1;
-}
-
-
-message IsChannelCreatorRequest {
-    string user_id = 1;
-    int64 channel_id = 2;
-}
-
-message IsChannelCreatorResponse {
-    bool is_creator = 1;
 }
 
 enum ContentType {
@@ -98,83 +76,94 @@ message UpdateBasePage {
     string last_modified_by = 2;
 }
 
-message ImagePage {
-    BasePage base = 1;
-    string image_file_url = 2;
-    string image_name = 3;
-}
-
-message CreateImagePage {
+message CreateImagePageRequest {
     CreateBasePage base = 1;
     string image_file_url = 2;
     string image_name = 3;
 }
 
-message UpdateImagePage {
-    UpdateBasePage base = 1;
-    string image_file_url = 2;
-    string image_name = 3;
-}
-
-message VideoPage {
-    BasePage base = 1;
-    string video_file_url = 2;
-    string video_name = 3;
-}
-
-message CreateVideoPage {
-    CreateBasePage base = 1;
-    string video_file_url = 2;
-    string video_name = 3;
-}
-
-message UpdateVideoPage {
-    UpdateBasePage base = 1;
-    string video_file_url = 2;
-    string video_name = 3;
-}
-
-message PDFPage {
-    BasePage base = 1;
-    string pdf_file_url = 2;
-    string pdf_name = 3;
-}
-
-message CreatePDFPage {
-    CreateBasePage base = 1;
-    string pdf_file_url = 2;
-    string pdf_name = 3;
-}
-
-message UpdatePDFPage {
-    UpdateBasePage base = 1;
-    string pdf_file_url = 2;
-    string pdf_name = 3;
-}
-
-message CreatePageRequest {
-    oneof page {
-        CreateImagePage image_page = 1;
-        CreateVideoPage video_page = 2;
-        CreatePDFPage pdf_page = 3;
-    }
-}
-
-message CreatePageResponse {
+message CreateImagePageResponse {
     int64 id = 1;
 }
 
-message GetPageRequest {
-    int64 id = 1;
-    ContentType content_type = 2;
+message CreatePDFPageRequest {
+    CreateBasePage base = 1;
+    string pdf_file_url = 2;
+    string pdf_name = 3;
 }
 
-message GetPageResponse {
-    oneof page {
-        ImagePage image_page = 1;
-        VideoPage video_page = 2;
-        PDFPage pdf_page = 3;
-    }
+message CreatePDFPageResponse {
+    int64 id = 1;
+}
+
+message CreateVideoPageRequest {
+    CreateBasePage base = 1;
+    string video_file_url = 2;
+    string video_name = 3;
+}
+
+message CreateVideoPageResponse {
+    int64 id = 1;
+}
+
+message GetImagePageRequest {
+    int64 id = 1;
+}
+
+message GetImagePageResponse {
+    BasePage base = 1;
+    string image_file_url = 2;
+    string image_name = 3;
+}
+
+message GetVideoPageRequest {
+    int64 id = 1;
+}
+
+message GetVideoPageResponse {
+    BasePage base = 1;
+    string video_file_url = 2;
+    string video_name = 3;
+}
+
+message GetPDFPageRequest {
+    int64 id = 1;
+}
+
+message GetPDFPageResponse {
+    BasePage base = 1;
+    string pdf_file_url = 2;
+    string pdf_name = 3;
+}
+
+message UpdateImagePageRequest {
+    UpdateBasePage base = 1;
+    string image_file_url = 2;
+    string image_name = 3;
+}
+
+message UpdateImagePageResponse {
+    int64 id = 1;
+}
+
+message UpdatePDFPageRequest {
+    UpdateBasePage base = 1;
+    string pdf_file_url = 2;
+    string pdf_name = 3;
+}
+
+message UpdatePDFPageResponse {
+    int64 id = 1;
+}
+
+message UpdateVideoPageRequest {
+    UpdateBasePage base = 1;
+    string video_file_url = 2;
+    string video_name = 3;
+}
+
+message UpdateVideoPageResponse {
+    int64 id = 1;
 }
 
 message GetPagesRequest {
@@ -187,25 +176,40 @@ message GetPagesResponse {
     repeated BasePage pages = 1; // The retrieved list of pages in the lesson.
 }
 
-message UpdatePageRequest {
-    oneof page {
-        UpdateImagePage image_page = 1;
-        UpdateVideoPage video_page = 2;
-        UpdatePDFPage pdf_page = 3;
-    }
-}
-
-message UpdatePageResponse {
-    int64 id = 1; // ID of the updated page.
-    bool success = 2;
-}
-
 message DeletePageRequest {
     int64 id = 1; // ID of the page to delete.
 }
 
 message DeletePageResponse {
     bool success = 1; // Indicates if the page was successfully deleted.
+}
+
+message IsUserShareWithPlanRequest {
+    string user_id = 1;
+    int64 plan_id = 2;
+}
+
+message IsUserShareWithPlanResponse {
+    bool is_share = 1;
+}
+
+
+message GetLearningGroupsShareWithChannelRequest {
+    int64 channel_id = 1; 
+}
+
+message GetLearningGroupsShareWithChannelResponse {
+    repeated string learning_group_ids = 1;
+}
+
+
+message IsChannelCreatorRequest {
+    string user_id = 1;
+    int64 channel_id = 2;
+}
+
+message IsChannelCreatorResponse {
+    bool is_creator = 1;
 }
 
 message Channel {

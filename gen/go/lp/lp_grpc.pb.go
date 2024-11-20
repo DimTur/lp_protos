@@ -39,10 +39,16 @@ const (
 	LearningPlatform_GetLessons_FullMethodName                        = "/lp.v1.LearningPlatform/GetLessons"
 	LearningPlatform_UpdateLesson_FullMethodName                      = "/lp.v1.LearningPlatform/UpdateLesson"
 	LearningPlatform_DeleteLesson_FullMethodName                      = "/lp.v1.LearningPlatform/DeleteLesson"
-	LearningPlatform_CreatePage_FullMethodName                        = "/lp.v1.LearningPlatform/CreatePage"
-	LearningPlatform_GetPage_FullMethodName                           = "/lp.v1.LearningPlatform/GetPage"
+	LearningPlatform_CreateImagePage_FullMethodName                   = "/lp.v1.LearningPlatform/CreateImagePage"
+	LearningPlatform_CreatePDFPage_FullMethodName                     = "/lp.v1.LearningPlatform/CreatePDFPage"
+	LearningPlatform_CreateVideoPage_FullMethodName                   = "/lp.v1.LearningPlatform/CreateVideoPage"
+	LearningPlatform_GetImagePage_FullMethodName                      = "/lp.v1.LearningPlatform/GetImagePage"
+	LearningPlatform_GetVideoPage_FullMethodName                      = "/lp.v1.LearningPlatform/GetVideoPage"
+	LearningPlatform_GetPDFPage_FullMethodName                        = "/lp.v1.LearningPlatform/GetPDFPage"
 	LearningPlatform_GetPages_FullMethodName                          = "/lp.v1.LearningPlatform/GetPages"
-	LearningPlatform_UpdatePage_FullMethodName                        = "/lp.v1.LearningPlatform/UpdatePage"
+	LearningPlatform_UpdateImagePage_FullMethodName                   = "/lp.v1.LearningPlatform/UpdateImagePage"
+	LearningPlatform_UpdatePDFPage_FullMethodName                     = "/lp.v1.LearningPlatform/UpdatePDFPage"
+	LearningPlatform_UpdateVideoPage_FullMethodName                   = "/lp.v1.LearningPlatform/UpdateVideoPage"
 	LearningPlatform_DeletePage_FullMethodName                        = "/lp.v1.LearningPlatform/DeletePage"
 	LearningPlatform_CreateQuestionPage_FullMethodName                = "/lp.v1.LearningPlatform/CreateQuestionPage"
 	LearningPlatform_GetQuestionPage_FullMethodName                   = "/lp.v1.LearningPlatform/GetQuestionPage"
@@ -74,10 +80,16 @@ type LearningPlatformClient interface {
 	GetLessons(ctx context.Context, in *GetLessonsRequest, opts ...grpc.CallOption) (*GetLessonsResponse, error)
 	UpdateLesson(ctx context.Context, in *UpdateLessonRequest, opts ...grpc.CallOption) (*UpdateLessonResponse, error)
 	DeleteLesson(ctx context.Context, in *DeleteLessonRequest, opts ...grpc.CallOption) (*DeleteLessonResponse, error)
-	CreatePage(ctx context.Context, in *CreatePageRequest, opts ...grpc.CallOption) (*CreatePageResponse, error)
-	GetPage(ctx context.Context, in *GetPageRequest, opts ...grpc.CallOption) (*GetPageResponse, error)
+	CreateImagePage(ctx context.Context, in *CreateImagePageRequest, opts ...grpc.CallOption) (*CreateImagePageResponse, error)
+	CreatePDFPage(ctx context.Context, in *CreatePDFPageRequest, opts ...grpc.CallOption) (*CreatePDFPageResponse, error)
+	CreateVideoPage(ctx context.Context, in *CreateVideoPageRequest, opts ...grpc.CallOption) (*CreateVideoPageResponse, error)
+	GetImagePage(ctx context.Context, in *GetImagePageRequest, opts ...grpc.CallOption) (*GetImagePageResponse, error)
+	GetVideoPage(ctx context.Context, in *GetVideoPageRequest, opts ...grpc.CallOption) (*GetVideoPageResponse, error)
+	GetPDFPage(ctx context.Context, in *GetPDFPageRequest, opts ...grpc.CallOption) (*GetPDFPageResponse, error)
 	GetPages(ctx context.Context, in *GetPagesRequest, opts ...grpc.CallOption) (*GetPagesResponse, error)
-	UpdatePage(ctx context.Context, in *UpdatePageRequest, opts ...grpc.CallOption) (*UpdatePageResponse, error)
+	UpdateImagePage(ctx context.Context, in *UpdateImagePageRequest, opts ...grpc.CallOption) (*UpdateImagePageResponse, error)
+	UpdatePDFPage(ctx context.Context, in *UpdatePDFPageRequest, opts ...grpc.CallOption) (*UpdatePDFPageResponse, error)
+	UpdateVideoPage(ctx context.Context, in *UpdateVideoPageRequest, opts ...grpc.CallOption) (*UpdateVideoPageResponse, error)
 	DeletePage(ctx context.Context, in *DeletePageRequest, opts ...grpc.CallOption) (*DeletePageResponse, error)
 	CreateQuestionPage(ctx context.Context, in *CreateQuestionPageRequest, opts ...grpc.CallOption) (*CreateQuestionPageResponse, error)
 	GetQuestionPage(ctx context.Context, in *GetQuestionPageRequest, opts ...grpc.CallOption) (*GetQuestionPageResponse, error)
@@ -293,20 +305,60 @@ func (c *learningPlatformClient) DeleteLesson(ctx context.Context, in *DeleteLes
 	return out, nil
 }
 
-func (c *learningPlatformClient) CreatePage(ctx context.Context, in *CreatePageRequest, opts ...grpc.CallOption) (*CreatePageResponse, error) {
+func (c *learningPlatformClient) CreateImagePage(ctx context.Context, in *CreateImagePageRequest, opts ...grpc.CallOption) (*CreateImagePageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreatePageResponse)
-	err := c.cc.Invoke(ctx, LearningPlatform_CreatePage_FullMethodName, in, out, cOpts...)
+	out := new(CreateImagePageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_CreateImagePage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *learningPlatformClient) GetPage(ctx context.Context, in *GetPageRequest, opts ...grpc.CallOption) (*GetPageResponse, error) {
+func (c *learningPlatformClient) CreatePDFPage(ctx context.Context, in *CreatePDFPageRequest, opts ...grpc.CallOption) (*CreatePDFPageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPageResponse)
-	err := c.cc.Invoke(ctx, LearningPlatform_GetPage_FullMethodName, in, out, cOpts...)
+	out := new(CreatePDFPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_CreatePDFPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) CreateVideoPage(ctx context.Context, in *CreateVideoPageRequest, opts ...grpc.CallOption) (*CreateVideoPageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateVideoPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_CreateVideoPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) GetImagePage(ctx context.Context, in *GetImagePageRequest, opts ...grpc.CallOption) (*GetImagePageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetImagePageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetImagePage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) GetVideoPage(ctx context.Context, in *GetVideoPageRequest, opts ...grpc.CallOption) (*GetVideoPageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetVideoPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetVideoPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) GetPDFPage(ctx context.Context, in *GetPDFPageRequest, opts ...grpc.CallOption) (*GetPDFPageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPDFPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetPDFPage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -323,10 +375,30 @@ func (c *learningPlatformClient) GetPages(ctx context.Context, in *GetPagesReque
 	return out, nil
 }
 
-func (c *learningPlatformClient) UpdatePage(ctx context.Context, in *UpdatePageRequest, opts ...grpc.CallOption) (*UpdatePageResponse, error) {
+func (c *learningPlatformClient) UpdateImagePage(ctx context.Context, in *UpdateImagePageRequest, opts ...grpc.CallOption) (*UpdateImagePageResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdatePageResponse)
-	err := c.cc.Invoke(ctx, LearningPlatform_UpdatePage_FullMethodName, in, out, cOpts...)
+	out := new(UpdateImagePageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_UpdateImagePage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) UpdatePDFPage(ctx context.Context, in *UpdatePDFPageRequest, opts ...grpc.CallOption) (*UpdatePDFPageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdatePDFPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_UpdatePDFPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) UpdateVideoPage(ctx context.Context, in *UpdateVideoPageRequest, opts ...grpc.CallOption) (*UpdateVideoPageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateVideoPageResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_UpdateVideoPage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -407,10 +479,16 @@ type LearningPlatformServer interface {
 	GetLessons(context.Context, *GetLessonsRequest) (*GetLessonsResponse, error)
 	UpdateLesson(context.Context, *UpdateLessonRequest) (*UpdateLessonResponse, error)
 	DeleteLesson(context.Context, *DeleteLessonRequest) (*DeleteLessonResponse, error)
-	CreatePage(context.Context, *CreatePageRequest) (*CreatePageResponse, error)
-	GetPage(context.Context, *GetPageRequest) (*GetPageResponse, error)
+	CreateImagePage(context.Context, *CreateImagePageRequest) (*CreateImagePageResponse, error)
+	CreatePDFPage(context.Context, *CreatePDFPageRequest) (*CreatePDFPageResponse, error)
+	CreateVideoPage(context.Context, *CreateVideoPageRequest) (*CreateVideoPageResponse, error)
+	GetImagePage(context.Context, *GetImagePageRequest) (*GetImagePageResponse, error)
+	GetVideoPage(context.Context, *GetVideoPageRequest) (*GetVideoPageResponse, error)
+	GetPDFPage(context.Context, *GetPDFPageRequest) (*GetPDFPageResponse, error)
 	GetPages(context.Context, *GetPagesRequest) (*GetPagesResponse, error)
-	UpdatePage(context.Context, *UpdatePageRequest) (*UpdatePageResponse, error)
+	UpdateImagePage(context.Context, *UpdateImagePageRequest) (*UpdateImagePageResponse, error)
+	UpdatePDFPage(context.Context, *UpdatePDFPageRequest) (*UpdatePDFPageResponse, error)
+	UpdateVideoPage(context.Context, *UpdateVideoPageRequest) (*UpdateVideoPageResponse, error)
 	DeletePage(context.Context, *DeletePageRequest) (*DeletePageResponse, error)
 	CreateQuestionPage(context.Context, *CreateQuestionPageRequest) (*CreateQuestionPageResponse, error)
 	GetQuestionPage(context.Context, *GetQuestionPageRequest) (*GetQuestionPageResponse, error)
@@ -486,17 +564,35 @@ func (UnimplementedLearningPlatformServer) UpdateLesson(context.Context, *Update
 func (UnimplementedLearningPlatformServer) DeleteLesson(context.Context, *DeleteLessonRequest) (*DeleteLessonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLesson not implemented")
 }
-func (UnimplementedLearningPlatformServer) CreatePage(context.Context, *CreatePageRequest) (*CreatePageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePage not implemented")
+func (UnimplementedLearningPlatformServer) CreateImagePage(context.Context, *CreateImagePageRequest) (*CreateImagePageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateImagePage not implemented")
 }
-func (UnimplementedLearningPlatformServer) GetPage(context.Context, *GetPageRequest) (*GetPageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPage not implemented")
+func (UnimplementedLearningPlatformServer) CreatePDFPage(context.Context, *CreatePDFPageRequest) (*CreatePDFPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePDFPage not implemented")
+}
+func (UnimplementedLearningPlatformServer) CreateVideoPage(context.Context, *CreateVideoPageRequest) (*CreateVideoPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateVideoPage not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetImagePage(context.Context, *GetImagePageRequest) (*GetImagePageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetImagePage not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetVideoPage(context.Context, *GetVideoPageRequest) (*GetVideoPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVideoPage not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetPDFPage(context.Context, *GetPDFPageRequest) (*GetPDFPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPDFPage not implemented")
 }
 func (UnimplementedLearningPlatformServer) GetPages(context.Context, *GetPagesRequest) (*GetPagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPages not implemented")
 }
-func (UnimplementedLearningPlatformServer) UpdatePage(context.Context, *UpdatePageRequest) (*UpdatePageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePage not implemented")
+func (UnimplementedLearningPlatformServer) UpdateImagePage(context.Context, *UpdateImagePageRequest) (*UpdateImagePageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateImagePage not implemented")
+}
+func (UnimplementedLearningPlatformServer) UpdatePDFPage(context.Context, *UpdatePDFPageRequest) (*UpdatePDFPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePDFPage not implemented")
+}
+func (UnimplementedLearningPlatformServer) UpdateVideoPage(context.Context, *UpdateVideoPageRequest) (*UpdateVideoPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateVideoPage not implemented")
 }
 func (UnimplementedLearningPlatformServer) DeletePage(context.Context, *DeletePageRequest) (*DeletePageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePage not implemented")
@@ -894,38 +990,110 @@ func _LearningPlatform_DeleteLesson_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LearningPlatform_CreatePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePageRequest)
+func _LearningPlatform_CreateImagePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateImagePageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LearningPlatformServer).CreatePage(ctx, in)
+		return srv.(LearningPlatformServer).CreateImagePage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LearningPlatform_CreatePage_FullMethodName,
+		FullMethod: LearningPlatform_CreateImagePage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LearningPlatformServer).CreatePage(ctx, req.(*CreatePageRequest))
+		return srv.(LearningPlatformServer).CreateImagePage(ctx, req.(*CreateImagePageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LearningPlatform_GetPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPageRequest)
+func _LearningPlatform_CreatePDFPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePDFPageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LearningPlatformServer).GetPage(ctx, in)
+		return srv.(LearningPlatformServer).CreatePDFPage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LearningPlatform_GetPage_FullMethodName,
+		FullMethod: LearningPlatform_CreatePDFPage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LearningPlatformServer).GetPage(ctx, req.(*GetPageRequest))
+		return srv.(LearningPlatformServer).CreatePDFPage(ctx, req.(*CreatePDFPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_CreateVideoPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateVideoPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).CreateVideoPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_CreateVideoPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).CreateVideoPage(ctx, req.(*CreateVideoPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_GetImagePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetImagePageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetImagePage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetImagePage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetImagePage(ctx, req.(*GetImagePageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_GetVideoPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetVideoPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetVideoPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetVideoPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetVideoPage(ctx, req.(*GetVideoPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_GetPDFPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPDFPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetPDFPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetPDFPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetPDFPage(ctx, req.(*GetPDFPageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -948,20 +1116,56 @@ func _LearningPlatform_GetPages_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LearningPlatform_UpdatePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePageRequest)
+func _LearningPlatform_UpdateImagePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateImagePageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LearningPlatformServer).UpdatePage(ctx, in)
+		return srv.(LearningPlatformServer).UpdateImagePage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LearningPlatform_UpdatePage_FullMethodName,
+		FullMethod: LearningPlatform_UpdateImagePage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LearningPlatformServer).UpdatePage(ctx, req.(*UpdatePageRequest))
+		return srv.(LearningPlatformServer).UpdateImagePage(ctx, req.(*UpdateImagePageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_UpdatePDFPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePDFPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).UpdatePDFPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_UpdatePDFPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).UpdatePDFPage(ctx, req.(*UpdatePDFPageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_UpdateVideoPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateVideoPageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).UpdateVideoPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_UpdateVideoPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).UpdateVideoPage(ctx, req.(*UpdateVideoPageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1144,20 +1348,44 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _LearningPlatform_DeleteLesson_Handler,
 		},
 		{
-			MethodName: "CreatePage",
-			Handler:    _LearningPlatform_CreatePage_Handler,
+			MethodName: "CreateImagePage",
+			Handler:    _LearningPlatform_CreateImagePage_Handler,
 		},
 		{
-			MethodName: "GetPage",
-			Handler:    _LearningPlatform_GetPage_Handler,
+			MethodName: "CreatePDFPage",
+			Handler:    _LearningPlatform_CreatePDFPage_Handler,
+		},
+		{
+			MethodName: "CreateVideoPage",
+			Handler:    _LearningPlatform_CreateVideoPage_Handler,
+		},
+		{
+			MethodName: "GetImagePage",
+			Handler:    _LearningPlatform_GetImagePage_Handler,
+		},
+		{
+			MethodName: "GetVideoPage",
+			Handler:    _LearningPlatform_GetVideoPage_Handler,
+		},
+		{
+			MethodName: "GetPDFPage",
+			Handler:    _LearningPlatform_GetPDFPage_Handler,
 		},
 		{
 			MethodName: "GetPages",
 			Handler:    _LearningPlatform_GetPages_Handler,
 		},
 		{
-			MethodName: "UpdatePage",
-			Handler:    _LearningPlatform_UpdatePage_Handler,
+			MethodName: "UpdateImagePage",
+			Handler:    _LearningPlatform_UpdateImagePage_Handler,
+		},
+		{
+			MethodName: "UpdatePDFPage",
+			Handler:    _LearningPlatform_UpdatePDFPage_Handler,
+		},
+		{
+			MethodName: "UpdateVideoPage",
+			Handler:    _LearningPlatform_UpdateVideoPage_Handler,
 		},
 		{
 			MethodName: "DeletePage",
