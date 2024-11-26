@@ -56,6 +56,7 @@ const (
 	LearningPlatform_TryLesson_FullMethodName                         = "/lp.v1.LearningPlatform/TryLesson"
 	LearningPlatform_UpdatePageAttempt_FullMethodName                 = "/lp.v1.LearningPlatform/UpdatePageAttempt"
 	LearningPlatform_CompleteLesson_FullMethodName                    = "/lp.v1.LearningPlatform/CompleteLesson"
+	LearningPlatform_GetLessonAttempts_FullMethodName                 = "/lp.v1.LearningPlatform/GetLessonAttempts"
 )
 
 // LearningPlatformClient is the client API for LearningPlatform service.
@@ -99,6 +100,7 @@ type LearningPlatformClient interface {
 	TryLesson(ctx context.Context, in *TryLessonRequest, opts ...grpc.CallOption) (*TryLessonResponse, error)
 	UpdatePageAttempt(ctx context.Context, in *UpdatePageAttemptRequest, opts ...grpc.CallOption) (*UpdatePageAttemptResponse, error)
 	CompleteLesson(ctx context.Context, in *CompleteLessonRequest, opts ...grpc.CallOption) (*CompleteLessonResponse, error)
+	GetLessonAttempts(ctx context.Context, in *GetLessonAttemptsRequest, opts ...grpc.CallOption) (*GetLessonAttemptsResponse, error)
 }
 
 type learningPlatformClient struct {
@@ -479,6 +481,16 @@ func (c *learningPlatformClient) CompleteLesson(ctx context.Context, in *Complet
 	return out, nil
 }
 
+func (c *learningPlatformClient) GetLessonAttempts(ctx context.Context, in *GetLessonAttemptsRequest, opts ...grpc.CallOption) (*GetLessonAttemptsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetLessonAttemptsResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetLessonAttempts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LearningPlatformServer is the server API for LearningPlatform service.
 // All implementations must embed UnimplementedLearningPlatformServer
 // for forward compatibility.
@@ -520,6 +532,7 @@ type LearningPlatformServer interface {
 	TryLesson(context.Context, *TryLessonRequest) (*TryLessonResponse, error)
 	UpdatePageAttempt(context.Context, *UpdatePageAttemptRequest) (*UpdatePageAttemptResponse, error)
 	CompleteLesson(context.Context, *CompleteLessonRequest) (*CompleteLessonResponse, error)
+	GetLessonAttempts(context.Context, *GetLessonAttemptsRequest) (*GetLessonAttemptsResponse, error)
 	mustEmbedUnimplementedLearningPlatformServer()
 }
 
@@ -640,6 +653,9 @@ func (UnimplementedLearningPlatformServer) UpdatePageAttempt(context.Context, *U
 }
 func (UnimplementedLearningPlatformServer) CompleteLesson(context.Context, *CompleteLessonRequest) (*CompleteLessonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CompleteLesson not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetLessonAttempts(context.Context, *GetLessonAttemptsRequest) (*GetLessonAttemptsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLessonAttempts not implemented")
 }
 func (UnimplementedLearningPlatformServer) mustEmbedUnimplementedLearningPlatformServer() {}
 func (UnimplementedLearningPlatformServer) testEmbeddedByValue()                          {}
@@ -1328,6 +1344,24 @@ func _LearningPlatform_CompleteLesson_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LearningPlatform_GetLessonAttempts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetLessonAttemptsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetLessonAttempts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetLessonAttempts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetLessonAttempts(ctx, req.(*GetLessonAttemptsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LearningPlatform_ServiceDesc is the grpc.ServiceDesc for LearningPlatform service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1482,6 +1516,10 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompleteLesson",
 			Handler:    _LearningPlatform_CompleteLesson_Handler,
+		},
+		{
+			MethodName: "GetLessonAttempts",
+			Handler:    _LearningPlatform_GetLessonAttempts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
