@@ -59,10 +59,10 @@ message GetLessonAttemptsRequest {
 
 message LessonAttempt {
     int64 id = 1;
-    string lesson_id = 2;
+    int64 lesson_id = 2;
     int64 plan_id = 3;
     int64 channel_id = 4;
-    int64 start_time = 5;
+    string start_time = 5;
     string end_time = 6;
     string user_id = 7;
     string last_modified_by = 8;
