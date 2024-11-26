@@ -53,7 +53,9 @@ const (
 	LearningPlatform_CreateQuestionPage_FullMethodName                = "/lp.v1.LearningPlatform/CreateQuestionPage"
 	LearningPlatform_GetQuestionPage_FullMethodName                   = "/lp.v1.LearningPlatform/GetQuestionPage"
 	LearningPlatform_UpdateQuestionPage_FullMethodName                = "/lp.v1.LearningPlatform/UpdateQuestionPage"
-	LearningPlatform_CreateAttempt_FullMethodName                     = "/lp.v1.LearningPlatform/CreateAttempt"
+	LearningPlatform_TryLesson_FullMethodName                         = "/lp.v1.LearningPlatform/TryLesson"
+	LearningPlatform_UpdatePageAttempt_FullMethodName                 = "/lp.v1.LearningPlatform/UpdatePageAttempt"
+	LearningPlatform_CompleteLesson_FullMethodName                    = "/lp.v1.LearningPlatform/CompleteLesson"
 )
 
 // LearningPlatformClient is the client API for LearningPlatform service.
@@ -94,7 +96,9 @@ type LearningPlatformClient interface {
 	CreateQuestionPage(ctx context.Context, in *CreateQuestionPageRequest, opts ...grpc.CallOption) (*CreateQuestionPageResponse, error)
 	GetQuestionPage(ctx context.Context, in *GetQuestionPageRequest, opts ...grpc.CallOption) (*GetQuestionPageResponse, error)
 	UpdateQuestionPage(ctx context.Context, in *UpdateQuestionPageRequest, opts ...grpc.CallOption) (*UpdateQuestionPageResponse, error)
-	CreateAttempt(ctx context.Context, in *CreateAttemptRequest, opts ...grpc.CallOption) (*CreateAttemptResponse, error)
+	TryLesson(ctx context.Context, in *TryLessonRequest, opts ...grpc.CallOption) (*TryLessonResponse, error)
+	UpdatePageAttempt(ctx context.Context, in *UpdatePageAttemptRequest, opts ...grpc.CallOption) (*UpdatePageAttemptResponse, error)
+	CompleteLesson(ctx context.Context, in *CompleteLessonRequest, opts ...grpc.CallOption) (*CompleteLessonResponse, error)
 }
 
 type learningPlatformClient struct {
@@ -445,10 +449,30 @@ func (c *learningPlatformClient) UpdateQuestionPage(ctx context.Context, in *Upd
 	return out, nil
 }
 
-func (c *learningPlatformClient) CreateAttempt(ctx context.Context, in *CreateAttemptRequest, opts ...grpc.CallOption) (*CreateAttemptResponse, error) {
+func (c *learningPlatformClient) TryLesson(ctx context.Context, in *TryLessonRequest, opts ...grpc.CallOption) (*TryLessonResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateAttemptResponse)
-	err := c.cc.Invoke(ctx, LearningPlatform_CreateAttempt_FullMethodName, in, out, cOpts...)
+	out := new(TryLessonResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_TryLesson_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) UpdatePageAttempt(ctx context.Context, in *UpdatePageAttemptRequest, opts ...grpc.CallOption) (*UpdatePageAttemptResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdatePageAttemptResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_UpdatePageAttempt_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) CompleteLesson(ctx context.Context, in *CompleteLessonRequest, opts ...grpc.CallOption) (*CompleteLessonResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompleteLessonResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_CompleteLesson_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -493,7 +517,9 @@ type LearningPlatformServer interface {
 	CreateQuestionPage(context.Context, *CreateQuestionPageRequest) (*CreateQuestionPageResponse, error)
 	GetQuestionPage(context.Context, *GetQuestionPageRequest) (*GetQuestionPageResponse, error)
 	UpdateQuestionPage(context.Context, *UpdateQuestionPageRequest) (*UpdateQuestionPageResponse, error)
-	CreateAttempt(context.Context, *CreateAttemptRequest) (*CreateAttemptResponse, error)
+	TryLesson(context.Context, *TryLessonRequest) (*TryLessonResponse, error)
+	UpdatePageAttempt(context.Context, *UpdatePageAttemptRequest) (*UpdatePageAttemptResponse, error)
+	CompleteLesson(context.Context, *CompleteLessonRequest) (*CompleteLessonResponse, error)
 	mustEmbedUnimplementedLearningPlatformServer()
 }
 
@@ -606,8 +632,14 @@ func (UnimplementedLearningPlatformServer) GetQuestionPage(context.Context, *Get
 func (UnimplementedLearningPlatformServer) UpdateQuestionPage(context.Context, *UpdateQuestionPageRequest) (*UpdateQuestionPageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuestionPage not implemented")
 }
-func (UnimplementedLearningPlatformServer) CreateAttempt(context.Context, *CreateAttemptRequest) (*CreateAttemptResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateAttempt not implemented")
+func (UnimplementedLearningPlatformServer) TryLesson(context.Context, *TryLessonRequest) (*TryLessonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TryLesson not implemented")
+}
+func (UnimplementedLearningPlatformServer) UpdatePageAttempt(context.Context, *UpdatePageAttemptRequest) (*UpdatePageAttemptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePageAttempt not implemented")
+}
+func (UnimplementedLearningPlatformServer) CompleteLesson(context.Context, *CompleteLessonRequest) (*CompleteLessonResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CompleteLesson not implemented")
 }
 func (UnimplementedLearningPlatformServer) mustEmbedUnimplementedLearningPlatformServer() {}
 func (UnimplementedLearningPlatformServer) testEmbeddedByValue()                          {}
@@ -1242,20 +1274,56 @@ func _LearningPlatform_UpdateQuestionPage_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LearningPlatform_CreateAttempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAttemptRequest)
+func _LearningPlatform_TryLesson_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TryLessonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(LearningPlatformServer).CreateAttempt(ctx, in)
+		return srv.(LearningPlatformServer).TryLesson(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: LearningPlatform_CreateAttempt_FullMethodName,
+		FullMethod: LearningPlatform_TryLesson_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LearningPlatformServer).CreateAttempt(ctx, req.(*CreateAttemptRequest))
+		return srv.(LearningPlatformServer).TryLesson(ctx, req.(*TryLessonRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_UpdatePageAttempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePageAttemptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).UpdatePageAttempt(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_UpdatePageAttempt_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).UpdatePageAttempt(ctx, req.(*UpdatePageAttemptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_CompleteLesson_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteLessonRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).CompleteLesson(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_CompleteLesson_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).CompleteLesson(ctx, req.(*CompleteLessonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1404,8 +1472,16 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _LearningPlatform_UpdateQuestionPage_Handler,
 		},
 		{
-			MethodName: "CreateAttempt",
-			Handler:    _LearningPlatform_CreateAttempt_Handler,
+			MethodName: "TryLesson",
+			Handler:    _LearningPlatform_TryLesson_Handler,
+		},
+		{
+			MethodName: "UpdatePageAttempt",
+			Handler:    _LearningPlatform_UpdatePageAttempt_Handler,
+		},
+		{
+			MethodName: "CompleteLesson",
+			Handler:    _LearningPlatform_CompleteLesson_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
