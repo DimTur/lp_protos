@@ -30,6 +30,7 @@ const (
 	LearningPlatform_CreatePlan_FullMethodName                        = "/lp.v1.LearningPlatform/CreatePlan"
 	LearningPlatform_GetPlan_FullMethodName                           = "/lp.v1.LearningPlatform/GetPlan"
 	LearningPlatform_GetPlans_FullMethodName                          = "/lp.v1.LearningPlatform/GetPlans"
+	LearningPlatform_GetPlansAll_FullMethodName                       = "/lp.v1.LearningPlatform/GetPlansAll"
 	LearningPlatform_UpdatePlan_FullMethodName                        = "/lp.v1.LearningPlatform/UpdatePlan"
 	LearningPlatform_DeletePlan_FullMethodName                        = "/lp.v1.LearningPlatform/DeletePlan"
 	LearningPlatform_SharePlanWithUsers_FullMethodName                = "/lp.v1.LearningPlatform/SharePlanWithUsers"
@@ -75,6 +76,7 @@ type LearningPlatformClient interface {
 	CreatePlan(ctx context.Context, in *CreatePlanRequest, opts ...grpc.CallOption) (*CreatePlanResponse, error)
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
 	GetPlans(ctx context.Context, in *GetPlansRequest, opts ...grpc.CallOption) (*GetPlansResponse, error)
+	GetPlansAll(ctx context.Context, in *GetPlansRequest, opts ...grpc.CallOption) (*GetPlansResponse, error)
 	UpdatePlan(ctx context.Context, in *UpdatePlanRequest, opts ...grpc.CallOption) (*UpdatePlanResponse, error)
 	DeletePlan(ctx context.Context, in *DeletePlanRequest, opts ...grpc.CallOption) (*DeletePlanResponse, error)
 	SharePlanWithUsers(ctx context.Context, in *SharePlanWithUsersRequest, opts ...grpc.CallOption) (*SharePlanWithUsersResponse, error)
@@ -217,6 +219,16 @@ func (c *learningPlatformClient) GetPlans(ctx context.Context, in *GetPlansReque
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPlansResponse)
 	err := c.cc.Invoke(ctx, LearningPlatform_GetPlans_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) GetPlansAll(ctx context.Context, in *GetPlansRequest, opts ...grpc.CallOption) (*GetPlansResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPlansResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetPlansAll_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -518,6 +530,7 @@ type LearningPlatformServer interface {
 	CreatePlan(context.Context, *CreatePlanRequest) (*CreatePlanResponse, error)
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
 	GetPlans(context.Context, *GetPlansRequest) (*GetPlansResponse, error)
+	GetPlansAll(context.Context, *GetPlansRequest) (*GetPlansResponse, error)
 	UpdatePlan(context.Context, *UpdatePlanRequest) (*UpdatePlanResponse, error)
 	DeletePlan(context.Context, *DeletePlanRequest) (*DeletePlanResponse, error)
 	SharePlanWithUsers(context.Context, *SharePlanWithUsersRequest) (*SharePlanWithUsersResponse, error)
@@ -588,6 +601,9 @@ func (UnimplementedLearningPlatformServer) GetPlan(context.Context, *GetPlanRequ
 }
 func (UnimplementedLearningPlatformServer) GetPlans(context.Context, *GetPlansRequest) (*GetPlansResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlans not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetPlansAll(context.Context, *GetPlansRequest) (*GetPlansResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlansAll not implemented")
 }
 func (UnimplementedLearningPlatformServer) UpdatePlan(context.Context, *UpdatePlanRequest) (*UpdatePlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlan not implemented")
@@ -888,6 +904,24 @@ func _LearningPlatform_GetPlans_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LearningPlatformServer).GetPlans(ctx, req.(*GetPlansRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_GetPlansAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlansRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetPlansAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetPlansAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetPlansAll(ctx, req.(*GetPlansRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1446,6 +1480,10 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlans",
 			Handler:    _LearningPlatform_GetPlans_Handler,
+		},
+		{
+			MethodName: "GetPlansAll",
+			Handler:    _LearningPlatform_GetPlansAll_Handler,
 		},
 		{
 			MethodName: "UpdatePlan",

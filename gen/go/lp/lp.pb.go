@@ -6240,7 +6240,7 @@ var file_lp_proto_rawDesc = []byte{
 	0x50, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x42, 0x10, 0x02, 0x12, 0x0c, 0x0a, 0x08, 0x4f, 0x50, 0x54,
 	0x49, 0x4f, 0x4e, 0x5f, 0x43, 0x10, 0x03, 0x12, 0x0c, 0x0a, 0x08, 0x4f, 0x50, 0x54, 0x49, 0x4f,
 	0x4e, 0x5f, 0x44, 0x10, 0x04, 0x12, 0x0c, 0x0a, 0x08, 0x4f, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x5f,
-	0x45, 0x10, 0x05, 0x32, 0xf5, 0x17, 0x0a, 0x10, 0x4c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67,
+	0x45, 0x10, 0x05, 0x32, 0xb5, 0x18, 0x0a, 0x10, 0x4c, 0x65, 0x61, 0x72, 0x6e, 0x69, 0x6e, 0x67,
 	0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x12, 0x4a, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x1b, 0x2e, 0x6c, 0x70, 0x2e, 0x76,
 	0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52,
@@ -6293,6 +6293,10 @@ var file_lp_proto_rawDesc = []byte{
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x6c, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47,
 	0x65, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b,
 	0x0a, 0x08, 0x47, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x73, 0x12, 0x16, 0x2e, 0x6c, 0x70, 0x2e,
+	0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x17, 0x2e, 0x6c, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6c,
+	0x61, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x0b, 0x47,
+	0x65, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x73, 0x41, 0x6c, 0x6c, 0x12, 0x16, 0x2e, 0x6c, 0x70, 0x2e,
 	0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6c, 0x61, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x17, 0x2e, 0x6c, 0x70, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x6c,
 	0x61, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x0a, 0x55,
@@ -6582,75 +6586,77 @@ var file_lp_proto_depIdxs = []int32{
 	61, // 35: lp.v1.LearningPlatform.CreatePlan:input_type -> lp.v1.CreatePlanRequest
 	63, // 36: lp.v1.LearningPlatform.GetPlan:input_type -> lp.v1.GetPlanRequest
 	65, // 37: lp.v1.LearningPlatform.GetPlans:input_type -> lp.v1.GetPlansRequest
-	67, // 38: lp.v1.LearningPlatform.UpdatePlan:input_type -> lp.v1.UpdatePlanRequest
-	69, // 39: lp.v1.LearningPlatform.DeletePlan:input_type -> lp.v1.DeletePlanRequest
-	71, // 40: lp.v1.LearningPlatform.SharePlanWithUsers:input_type -> lp.v1.SharePlanWithUsersRequest
-	40, // 41: lp.v1.LearningPlatform.IsUserShareWithPlan:input_type -> lp.v1.IsUserShareWithPlanRequest
-	74, // 42: lp.v1.LearningPlatform.CreateLesson:input_type -> lp.v1.CreateLessonRequest
-	76, // 43: lp.v1.LearningPlatform.GetLesson:input_type -> lp.v1.GetLessonRequest
-	78, // 44: lp.v1.LearningPlatform.GetLessons:input_type -> lp.v1.GetLessonsRequest
-	80, // 45: lp.v1.LearningPlatform.UpdateLesson:input_type -> lp.v1.UpdateLessonRequest
-	82, // 46: lp.v1.LearningPlatform.DeleteLesson:input_type -> lp.v1.DeleteLessonRequest
-	18, // 47: lp.v1.LearningPlatform.CreateImagePage:input_type -> lp.v1.CreateImagePageRequest
-	20, // 48: lp.v1.LearningPlatform.CreatePDFPage:input_type -> lp.v1.CreatePDFPageRequest
-	22, // 49: lp.v1.LearningPlatform.CreateVideoPage:input_type -> lp.v1.CreateVideoPageRequest
-	24, // 50: lp.v1.LearningPlatform.GetImagePage:input_type -> lp.v1.GetImagePageRequest
-	26, // 51: lp.v1.LearningPlatform.GetVideoPage:input_type -> lp.v1.GetVideoPageRequest
-	28, // 52: lp.v1.LearningPlatform.GetPDFPage:input_type -> lp.v1.GetPDFPageRequest
-	36, // 53: lp.v1.LearningPlatform.GetPages:input_type -> lp.v1.GetPagesRequest
-	30, // 54: lp.v1.LearningPlatform.UpdateImagePage:input_type -> lp.v1.UpdateImagePageRequest
-	32, // 55: lp.v1.LearningPlatform.UpdatePDFPage:input_type -> lp.v1.UpdatePDFPageRequest
-	34, // 56: lp.v1.LearningPlatform.UpdateVideoPage:input_type -> lp.v1.UpdateVideoPageRequest
-	38, // 57: lp.v1.LearningPlatform.DeletePage:input_type -> lp.v1.DeletePageRequest
-	85, // 58: lp.v1.LearningPlatform.CreateQuestionPage:input_type -> lp.v1.CreateQuestionPageRequest
-	87, // 59: lp.v1.LearningPlatform.GetQuestionPage:input_type -> lp.v1.GetQuestionPageRequest
-	89, // 60: lp.v1.LearningPlatform.UpdateQuestionPage:input_type -> lp.v1.UpdateQuestionPageRequest
-	8,  // 61: lp.v1.LearningPlatform.TryLesson:input_type -> lp.v1.TryLessonRequest
-	11, // 62: lp.v1.LearningPlatform.UpdatePageAttempt:input_type -> lp.v1.UpdatePageAttemptRequest
-	13, // 63: lp.v1.LearningPlatform.CompleteLesson:input_type -> lp.v1.CompleteLessonRequest
-	5,  // 64: lp.v1.LearningPlatform.GetLessonAttempts:input_type -> lp.v1.GetLessonAttemptsRequest
-	3,  // 65: lp.v1.LearningPlatform.CheckPermissionForUser:input_type -> lp.v1.CheckPermissionForUserRequest
-	49, // 66: lp.v1.LearningPlatform.CreateChannel:output_type -> lp.v1.CreateChannelResponse
-	51, // 67: lp.v1.LearningPlatform.GetChannel:output_type -> lp.v1.GetChannelResponse
-	53, // 68: lp.v1.LearningPlatform.GetChannels:output_type -> lp.v1.GetChannelsResponse
-	55, // 69: lp.v1.LearningPlatform.UpdateChannel:output_type -> lp.v1.UpdateChannelResponse
-	57, // 70: lp.v1.LearningPlatform.DeleteChannel:output_type -> lp.v1.DeleteChannelResponse
-	59, // 71: lp.v1.LearningPlatform.ShareChannelToGroup:output_type -> lp.v1.ShareChannelToGroupResponse
-	45, // 72: lp.v1.LearningPlatform.IsChannelCreator:output_type -> lp.v1.IsChannelCreatorResponse
-	43, // 73: lp.v1.LearningPlatform.GetLearningGroupsShareWithChannel:output_type -> lp.v1.GetLearningGroupsShareWithChannelResponse
-	62, // 74: lp.v1.LearningPlatform.CreatePlan:output_type -> lp.v1.CreatePlanResponse
-	64, // 75: lp.v1.LearningPlatform.GetPlan:output_type -> lp.v1.GetPlanResponse
-	66, // 76: lp.v1.LearningPlatform.GetPlans:output_type -> lp.v1.GetPlansResponse
-	68, // 77: lp.v1.LearningPlatform.UpdatePlan:output_type -> lp.v1.UpdatePlanResponse
-	70, // 78: lp.v1.LearningPlatform.DeletePlan:output_type -> lp.v1.DeletePlanResponse
-	72, // 79: lp.v1.LearningPlatform.SharePlanWithUsers:output_type -> lp.v1.SharePlanWithUsersResponse
-	41, // 80: lp.v1.LearningPlatform.IsUserShareWithPlan:output_type -> lp.v1.IsUserShareWithPlanResponse
-	75, // 81: lp.v1.LearningPlatform.CreateLesson:output_type -> lp.v1.CreateLessonResponse
-	77, // 82: lp.v1.LearningPlatform.GetLesson:output_type -> lp.v1.GetLessonResponse
-	79, // 83: lp.v1.LearningPlatform.GetLessons:output_type -> lp.v1.GetLessonsResponse
-	81, // 84: lp.v1.LearningPlatform.UpdateLesson:output_type -> lp.v1.UpdateLessonResponse
-	83, // 85: lp.v1.LearningPlatform.DeleteLesson:output_type -> lp.v1.DeleteLessonResponse
-	19, // 86: lp.v1.LearningPlatform.CreateImagePage:output_type -> lp.v1.CreateImagePageResponse
-	21, // 87: lp.v1.LearningPlatform.CreatePDFPage:output_type -> lp.v1.CreatePDFPageResponse
-	23, // 88: lp.v1.LearningPlatform.CreateVideoPage:output_type -> lp.v1.CreateVideoPageResponse
-	25, // 89: lp.v1.LearningPlatform.GetImagePage:output_type -> lp.v1.GetImagePageResponse
-	27, // 90: lp.v1.LearningPlatform.GetVideoPage:output_type -> lp.v1.GetVideoPageResponse
-	29, // 91: lp.v1.LearningPlatform.GetPDFPage:output_type -> lp.v1.GetPDFPageResponse
-	37, // 92: lp.v1.LearningPlatform.GetPages:output_type -> lp.v1.GetPagesResponse
-	31, // 93: lp.v1.LearningPlatform.UpdateImagePage:output_type -> lp.v1.UpdateImagePageResponse
-	33, // 94: lp.v1.LearningPlatform.UpdatePDFPage:output_type -> lp.v1.UpdatePDFPageResponse
-	35, // 95: lp.v1.LearningPlatform.UpdateVideoPage:output_type -> lp.v1.UpdateVideoPageResponse
-	39, // 96: lp.v1.LearningPlatform.DeletePage:output_type -> lp.v1.DeletePageResponse
-	86, // 97: lp.v1.LearningPlatform.CreateQuestionPage:output_type -> lp.v1.CreateQuestionPageResponse
-	88, // 98: lp.v1.LearningPlatform.GetQuestionPage:output_type -> lp.v1.GetQuestionPageResponse
-	90, // 99: lp.v1.LearningPlatform.UpdateQuestionPage:output_type -> lp.v1.UpdateQuestionPageResponse
-	10, // 100: lp.v1.LearningPlatform.TryLesson:output_type -> lp.v1.TryLessonResponse
-	12, // 101: lp.v1.LearningPlatform.UpdatePageAttempt:output_type -> lp.v1.UpdatePageAttemptResponse
-	14, // 102: lp.v1.LearningPlatform.CompleteLesson:output_type -> lp.v1.CompleteLessonResponse
-	7,  // 103: lp.v1.LearningPlatform.GetLessonAttempts:output_type -> lp.v1.GetLessonAttemptsResponse
-	4,  // 104: lp.v1.LearningPlatform.CheckPermissionForUser:output_type -> lp.v1.CheckPermissionForUserResponse
-	66, // [66:105] is the sub-list for method output_type
-	27, // [27:66] is the sub-list for method input_type
+	65, // 38: lp.v1.LearningPlatform.GetPlansAll:input_type -> lp.v1.GetPlansRequest
+	67, // 39: lp.v1.LearningPlatform.UpdatePlan:input_type -> lp.v1.UpdatePlanRequest
+	69, // 40: lp.v1.LearningPlatform.DeletePlan:input_type -> lp.v1.DeletePlanRequest
+	71, // 41: lp.v1.LearningPlatform.SharePlanWithUsers:input_type -> lp.v1.SharePlanWithUsersRequest
+	40, // 42: lp.v1.LearningPlatform.IsUserShareWithPlan:input_type -> lp.v1.IsUserShareWithPlanRequest
+	74, // 43: lp.v1.LearningPlatform.CreateLesson:input_type -> lp.v1.CreateLessonRequest
+	76, // 44: lp.v1.LearningPlatform.GetLesson:input_type -> lp.v1.GetLessonRequest
+	78, // 45: lp.v1.LearningPlatform.GetLessons:input_type -> lp.v1.GetLessonsRequest
+	80, // 46: lp.v1.LearningPlatform.UpdateLesson:input_type -> lp.v1.UpdateLessonRequest
+	82, // 47: lp.v1.LearningPlatform.DeleteLesson:input_type -> lp.v1.DeleteLessonRequest
+	18, // 48: lp.v1.LearningPlatform.CreateImagePage:input_type -> lp.v1.CreateImagePageRequest
+	20, // 49: lp.v1.LearningPlatform.CreatePDFPage:input_type -> lp.v1.CreatePDFPageRequest
+	22, // 50: lp.v1.LearningPlatform.CreateVideoPage:input_type -> lp.v1.CreateVideoPageRequest
+	24, // 51: lp.v1.LearningPlatform.GetImagePage:input_type -> lp.v1.GetImagePageRequest
+	26, // 52: lp.v1.LearningPlatform.GetVideoPage:input_type -> lp.v1.GetVideoPageRequest
+	28, // 53: lp.v1.LearningPlatform.GetPDFPage:input_type -> lp.v1.GetPDFPageRequest
+	36, // 54: lp.v1.LearningPlatform.GetPages:input_type -> lp.v1.GetPagesRequest
+	30, // 55: lp.v1.LearningPlatform.UpdateImagePage:input_type -> lp.v1.UpdateImagePageRequest
+	32, // 56: lp.v1.LearningPlatform.UpdatePDFPage:input_type -> lp.v1.UpdatePDFPageRequest
+	34, // 57: lp.v1.LearningPlatform.UpdateVideoPage:input_type -> lp.v1.UpdateVideoPageRequest
+	38, // 58: lp.v1.LearningPlatform.DeletePage:input_type -> lp.v1.DeletePageRequest
+	85, // 59: lp.v1.LearningPlatform.CreateQuestionPage:input_type -> lp.v1.CreateQuestionPageRequest
+	87, // 60: lp.v1.LearningPlatform.GetQuestionPage:input_type -> lp.v1.GetQuestionPageRequest
+	89, // 61: lp.v1.LearningPlatform.UpdateQuestionPage:input_type -> lp.v1.UpdateQuestionPageRequest
+	8,  // 62: lp.v1.LearningPlatform.TryLesson:input_type -> lp.v1.TryLessonRequest
+	11, // 63: lp.v1.LearningPlatform.UpdatePageAttempt:input_type -> lp.v1.UpdatePageAttemptRequest
+	13, // 64: lp.v1.LearningPlatform.CompleteLesson:input_type -> lp.v1.CompleteLessonRequest
+	5,  // 65: lp.v1.LearningPlatform.GetLessonAttempts:input_type -> lp.v1.GetLessonAttemptsRequest
+	3,  // 66: lp.v1.LearningPlatform.CheckPermissionForUser:input_type -> lp.v1.CheckPermissionForUserRequest
+	49, // 67: lp.v1.LearningPlatform.CreateChannel:output_type -> lp.v1.CreateChannelResponse
+	51, // 68: lp.v1.LearningPlatform.GetChannel:output_type -> lp.v1.GetChannelResponse
+	53, // 69: lp.v1.LearningPlatform.GetChannels:output_type -> lp.v1.GetChannelsResponse
+	55, // 70: lp.v1.LearningPlatform.UpdateChannel:output_type -> lp.v1.UpdateChannelResponse
+	57, // 71: lp.v1.LearningPlatform.DeleteChannel:output_type -> lp.v1.DeleteChannelResponse
+	59, // 72: lp.v1.LearningPlatform.ShareChannelToGroup:output_type -> lp.v1.ShareChannelToGroupResponse
+	45, // 73: lp.v1.LearningPlatform.IsChannelCreator:output_type -> lp.v1.IsChannelCreatorResponse
+	43, // 74: lp.v1.LearningPlatform.GetLearningGroupsShareWithChannel:output_type -> lp.v1.GetLearningGroupsShareWithChannelResponse
+	62, // 75: lp.v1.LearningPlatform.CreatePlan:output_type -> lp.v1.CreatePlanResponse
+	64, // 76: lp.v1.LearningPlatform.GetPlan:output_type -> lp.v1.GetPlanResponse
+	66, // 77: lp.v1.LearningPlatform.GetPlans:output_type -> lp.v1.GetPlansResponse
+	66, // 78: lp.v1.LearningPlatform.GetPlansAll:output_type -> lp.v1.GetPlansResponse
+	68, // 79: lp.v1.LearningPlatform.UpdatePlan:output_type -> lp.v1.UpdatePlanResponse
+	70, // 80: lp.v1.LearningPlatform.DeletePlan:output_type -> lp.v1.DeletePlanResponse
+	72, // 81: lp.v1.LearningPlatform.SharePlanWithUsers:output_type -> lp.v1.SharePlanWithUsersResponse
+	41, // 82: lp.v1.LearningPlatform.IsUserShareWithPlan:output_type -> lp.v1.IsUserShareWithPlanResponse
+	75, // 83: lp.v1.LearningPlatform.CreateLesson:output_type -> lp.v1.CreateLessonResponse
+	77, // 84: lp.v1.LearningPlatform.GetLesson:output_type -> lp.v1.GetLessonResponse
+	79, // 85: lp.v1.LearningPlatform.GetLessons:output_type -> lp.v1.GetLessonsResponse
+	81, // 86: lp.v1.LearningPlatform.UpdateLesson:output_type -> lp.v1.UpdateLessonResponse
+	83, // 87: lp.v1.LearningPlatform.DeleteLesson:output_type -> lp.v1.DeleteLessonResponse
+	19, // 88: lp.v1.LearningPlatform.CreateImagePage:output_type -> lp.v1.CreateImagePageResponse
+	21, // 89: lp.v1.LearningPlatform.CreatePDFPage:output_type -> lp.v1.CreatePDFPageResponse
+	23, // 90: lp.v1.LearningPlatform.CreateVideoPage:output_type -> lp.v1.CreateVideoPageResponse
+	25, // 91: lp.v1.LearningPlatform.GetImagePage:output_type -> lp.v1.GetImagePageResponse
+	27, // 92: lp.v1.LearningPlatform.GetVideoPage:output_type -> lp.v1.GetVideoPageResponse
+	29, // 93: lp.v1.LearningPlatform.GetPDFPage:output_type -> lp.v1.GetPDFPageResponse
+	37, // 94: lp.v1.LearningPlatform.GetPages:output_type -> lp.v1.GetPagesResponse
+	31, // 95: lp.v1.LearningPlatform.UpdateImagePage:output_type -> lp.v1.UpdateImagePageResponse
+	33, // 96: lp.v1.LearningPlatform.UpdatePDFPage:output_type -> lp.v1.UpdatePDFPageResponse
+	35, // 97: lp.v1.LearningPlatform.UpdateVideoPage:output_type -> lp.v1.UpdateVideoPageResponse
+	39, // 98: lp.v1.LearningPlatform.DeletePage:output_type -> lp.v1.DeletePageResponse
+	86, // 99: lp.v1.LearningPlatform.CreateQuestionPage:output_type -> lp.v1.CreateQuestionPageResponse
+	88, // 100: lp.v1.LearningPlatform.GetQuestionPage:output_type -> lp.v1.GetQuestionPageResponse
+	90, // 101: lp.v1.LearningPlatform.UpdateQuestionPage:output_type -> lp.v1.UpdateQuestionPageResponse
+	10, // 102: lp.v1.LearningPlatform.TryLesson:output_type -> lp.v1.TryLessonResponse
+	12, // 103: lp.v1.LearningPlatform.UpdatePageAttempt:output_type -> lp.v1.UpdatePageAttemptResponse
+	14, // 104: lp.v1.LearningPlatform.CompleteLesson:output_type -> lp.v1.CompleteLessonResponse
+	7,  // 105: lp.v1.LearningPlatform.GetLessonAttempts:output_type -> lp.v1.GetLessonAttemptsResponse
+	4,  // 106: lp.v1.LearningPlatform.CheckPermissionForUser:output_type -> lp.v1.CheckPermissionForUserResponse
+	67, // [67:107] is the sub-list for method output_type
+	27, // [27:67] is the sub-list for method input_type
 	27, // [27:27] is the sub-list for extension type_name
 	27, // [27:27] is the sub-list for extension extendee
 	0,  // [0:27] is the sub-list for field type_name

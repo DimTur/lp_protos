@@ -17,6 +17,7 @@ service LearningPlatform {
     rpc CreatePlan (CreatePlanRequest) returns (CreatePlanResponse);
     rpc GetPlan (GetPlanRequest) returns (GetPlanResponse);
     rpc GetPlans (GetPlansRequest) returns (GetPlansResponse);
+    rpc GetPlansAll (GetPlansRequest) returns (GetPlansResponse);
     rpc UpdatePlan (UpdatePlanRequest) returns (UpdatePlanResponse);
     rpc DeletePlan (DeletePlanRequest) returns (DeletePlanResponse);
     rpc SharePlanWithUsers (SharePlanWithUsersRequest) returns (SharePlanWithUsersResponse);
