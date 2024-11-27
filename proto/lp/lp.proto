@@ -48,6 +48,16 @@ service LearningPlatform {
     rpc UpdatePageAttempt (UpdatePageAttemptRequest) returns (UpdatePageAttemptResponse);
     rpc CompleteLesson (CompleteLessonRequest) returns (CompleteLessonResponse);
     rpc GetLessonAttempts (GetLessonAttemptsRequest) returns (GetLessonAttemptsResponse);
+    rpc CheckPermissionForUser (CheckPermissionForUserRequest) returns (CheckPermissionForUserResponse);
+}
+
+message CheckPermissionForUserRequest {
+    string user_id = 1;
+    int64 lesson_attempt_id = 2;
+}
+
+message CheckPermissionForUserResponse {
+    bool success = 1;
 }
 
 message GetLessonAttemptsRequest {

@@ -57,6 +57,7 @@ const (
 	LearningPlatform_UpdatePageAttempt_FullMethodName                 = "/lp.v1.LearningPlatform/UpdatePageAttempt"
 	LearningPlatform_CompleteLesson_FullMethodName                    = "/lp.v1.LearningPlatform/CompleteLesson"
 	LearningPlatform_GetLessonAttempts_FullMethodName                 = "/lp.v1.LearningPlatform/GetLessonAttempts"
+	LearningPlatform_CheckPermissionForUser_FullMethodName            = "/lp.v1.LearningPlatform/CheckPermissionForUser"
 )
 
 // LearningPlatformClient is the client API for LearningPlatform service.
@@ -101,6 +102,7 @@ type LearningPlatformClient interface {
 	UpdatePageAttempt(ctx context.Context, in *UpdatePageAttemptRequest, opts ...grpc.CallOption) (*UpdatePageAttemptResponse, error)
 	CompleteLesson(ctx context.Context, in *CompleteLessonRequest, opts ...grpc.CallOption) (*CompleteLessonResponse, error)
 	GetLessonAttempts(ctx context.Context, in *GetLessonAttemptsRequest, opts ...grpc.CallOption) (*GetLessonAttemptsResponse, error)
+	CheckPermissionForUser(ctx context.Context, in *CheckPermissionForUserRequest, opts ...grpc.CallOption) (*CheckPermissionForUserResponse, error)
 }
 
 type learningPlatformClient struct {
@@ -491,6 +493,16 @@ func (c *learningPlatformClient) GetLessonAttempts(ctx context.Context, in *GetL
 	return out, nil
 }
 
+func (c *learningPlatformClient) CheckPermissionForUser(ctx context.Context, in *CheckPermissionForUserRequest, opts ...grpc.CallOption) (*CheckPermissionForUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckPermissionForUserResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_CheckPermissionForUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LearningPlatformServer is the server API for LearningPlatform service.
 // All implementations must embed UnimplementedLearningPlatformServer
 // for forward compatibility.
@@ -533,6 +545,7 @@ type LearningPlatformServer interface {
 	UpdatePageAttempt(context.Context, *UpdatePageAttemptRequest) (*UpdatePageAttemptResponse, error)
 	CompleteLesson(context.Context, *CompleteLessonRequest) (*CompleteLessonResponse, error)
 	GetLessonAttempts(context.Context, *GetLessonAttemptsRequest) (*GetLessonAttemptsResponse, error)
+	CheckPermissionForUser(context.Context, *CheckPermissionForUserRequest) (*CheckPermissionForUserResponse, error)
 	mustEmbedUnimplementedLearningPlatformServer()
 }
 
@@ -656,6 +669,9 @@ func (UnimplementedLearningPlatformServer) CompleteLesson(context.Context, *Comp
 }
 func (UnimplementedLearningPlatformServer) GetLessonAttempts(context.Context, *GetLessonAttemptsRequest) (*GetLessonAttemptsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLessonAttempts not implemented")
+}
+func (UnimplementedLearningPlatformServer) CheckPermissionForUser(context.Context, *CheckPermissionForUserRequest) (*CheckPermissionForUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckPermissionForUser not implemented")
 }
 func (UnimplementedLearningPlatformServer) mustEmbedUnimplementedLearningPlatformServer() {}
 func (UnimplementedLearningPlatformServer) testEmbeddedByValue()                          {}
@@ -1362,6 +1378,24 @@ func _LearningPlatform_GetLessonAttempts_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LearningPlatform_CheckPermissionForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckPermissionForUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).CheckPermissionForUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_CheckPermissionForUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).CheckPermissionForUser(ctx, req.(*CheckPermissionForUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LearningPlatform_ServiceDesc is the grpc.ServiceDesc for LearningPlatform service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1520,6 +1554,10 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLessonAttempts",
 			Handler:    _LearningPlatform_GetLessonAttempts_Handler,
+		},
+		{
+			MethodName: "CheckPermissionForUser",
+			Handler:    _LearningPlatform_CheckPermissionForUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
