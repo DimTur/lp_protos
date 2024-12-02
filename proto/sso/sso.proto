@@ -22,6 +22,16 @@ service Sso {
     rpc IsGroupAdmin (IsGroupAdminRequest) returns (IsGroupAdminResponse);
     rpc IsUserGroupAdminIn (IsUserGroupAdminInRequest) returns (IsUserGroupAdminInResponse);
     rpc IsUserLearnerIn (IsUserLearnereInRequest) returns (IsUserLearnereInResponse);
+    rpc GetLearners (GetLearnersRequest) returns (GetLearnersResponse);
+}
+
+
+message GetLearnersRequest {
+    string learning_group_id = 1;
+}
+
+message GetLearnersResponse {
+    repeated string learners = 1;
 }
 
 message RegisterUserRequest {
