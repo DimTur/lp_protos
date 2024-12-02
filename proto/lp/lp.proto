@@ -22,6 +22,7 @@ service LearningPlatform {
     rpc DeletePlan (DeletePlanRequest) returns (DeletePlanResponse);
     rpc SharePlanWithUsers (SharePlanWithUsersRequest) returns (SharePlanWithUsersResponse);
     rpc IsUserShareWithPlan (IsUserShareWithPlanRequest) returns (IsUserShareWithPlanResponse);
+    rpc GetPlansForSharing (GetPlansForSharingRequest) returns (GetPlansForSharingResponse);
 
     rpc CreateLesson (CreateLessonRequest) returns (CreateLessonResponse);
     rpc GetLesson (GetLessonRequest) returns (GetLessonResponse);
@@ -50,6 +51,19 @@ service LearningPlatform {
     rpc CompleteLesson (CompleteLessonRequest) returns (CompleteLessonResponse);
     rpc GetLessonAttempts (GetLessonAttemptsRequest) returns (GetLessonAttemptsResponse);
     rpc CheckPermissionForUser (CheckPermissionForUserRequest) returns (CheckPermissionForUserResponse);
+}
+
+message GetPlansForSharingRequest {
+    string learning_group_id = 1;
+}
+
+message PlansForSharing {
+    int64 channel_id = 1;
+    repeated int64 plan_ids = 2;
+}
+
+message GetPlansForSharingResponse {
+    repeated PlansForSharing plans_for_sharing = 1;
 }
 
 message CheckPermissionForUserRequest {

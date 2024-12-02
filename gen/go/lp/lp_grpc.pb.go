@@ -35,6 +35,7 @@ const (
 	LearningPlatform_DeletePlan_FullMethodName                        = "/lp.v1.LearningPlatform/DeletePlan"
 	LearningPlatform_SharePlanWithUsers_FullMethodName                = "/lp.v1.LearningPlatform/SharePlanWithUsers"
 	LearningPlatform_IsUserShareWithPlan_FullMethodName               = "/lp.v1.LearningPlatform/IsUserShareWithPlan"
+	LearningPlatform_GetPlansForSharing_FullMethodName                = "/lp.v1.LearningPlatform/GetPlansForSharing"
 	LearningPlatform_CreateLesson_FullMethodName                      = "/lp.v1.LearningPlatform/CreateLesson"
 	LearningPlatform_GetLesson_FullMethodName                         = "/lp.v1.LearningPlatform/GetLesson"
 	LearningPlatform_GetLessons_FullMethodName                        = "/lp.v1.LearningPlatform/GetLessons"
@@ -81,6 +82,7 @@ type LearningPlatformClient interface {
 	DeletePlan(ctx context.Context, in *DeletePlanRequest, opts ...grpc.CallOption) (*DeletePlanResponse, error)
 	SharePlanWithUsers(ctx context.Context, in *SharePlanWithUsersRequest, opts ...grpc.CallOption) (*SharePlanWithUsersResponse, error)
 	IsUserShareWithPlan(ctx context.Context, in *IsUserShareWithPlanRequest, opts ...grpc.CallOption) (*IsUserShareWithPlanResponse, error)
+	GetPlansForSharing(ctx context.Context, in *GetPlansForSharingRequest, opts ...grpc.CallOption) (*GetPlansForSharingResponse, error)
 	CreateLesson(ctx context.Context, in *CreateLessonRequest, opts ...grpc.CallOption) (*CreateLessonResponse, error)
 	GetLesson(ctx context.Context, in *GetLessonRequest, opts ...grpc.CallOption) (*GetLessonResponse, error)
 	GetLessons(ctx context.Context, in *GetLessonsRequest, opts ...grpc.CallOption) (*GetLessonsResponse, error)
@@ -269,6 +271,16 @@ func (c *learningPlatformClient) IsUserShareWithPlan(ctx context.Context, in *Is
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IsUserShareWithPlanResponse)
 	err := c.cc.Invoke(ctx, LearningPlatform_IsUserShareWithPlan_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *learningPlatformClient) GetPlansForSharing(ctx context.Context, in *GetPlansForSharingRequest, opts ...grpc.CallOption) (*GetPlansForSharingResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPlansForSharingResponse)
+	err := c.cc.Invoke(ctx, LearningPlatform_GetPlansForSharing_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -535,6 +547,7 @@ type LearningPlatformServer interface {
 	DeletePlan(context.Context, *DeletePlanRequest) (*DeletePlanResponse, error)
 	SharePlanWithUsers(context.Context, *SharePlanWithUsersRequest) (*SharePlanWithUsersResponse, error)
 	IsUserShareWithPlan(context.Context, *IsUserShareWithPlanRequest) (*IsUserShareWithPlanResponse, error)
+	GetPlansForSharing(context.Context, *GetPlansForSharingRequest) (*GetPlansForSharingResponse, error)
 	CreateLesson(context.Context, *CreateLessonRequest) (*CreateLessonResponse, error)
 	GetLesson(context.Context, *GetLessonRequest) (*GetLessonResponse, error)
 	GetLessons(context.Context, *GetLessonsRequest) (*GetLessonsResponse, error)
@@ -616,6 +629,9 @@ func (UnimplementedLearningPlatformServer) SharePlanWithUsers(context.Context, *
 }
 func (UnimplementedLearningPlatformServer) IsUserShareWithPlan(context.Context, *IsUserShareWithPlanRequest) (*IsUserShareWithPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsUserShareWithPlan not implemented")
+}
+func (UnimplementedLearningPlatformServer) GetPlansForSharing(context.Context, *GetPlansForSharingRequest) (*GetPlansForSharingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlansForSharing not implemented")
 }
 func (UnimplementedLearningPlatformServer) CreateLesson(context.Context, *CreateLessonRequest) (*CreateLessonResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateLesson not implemented")
@@ -994,6 +1010,24 @@ func _LearningPlatform_IsUserShareWithPlan_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(LearningPlatformServer).IsUserShareWithPlan(ctx, req.(*IsUserShareWithPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LearningPlatform_GetPlansForSharing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlansForSharingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LearningPlatformServer).GetPlansForSharing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LearningPlatform_GetPlansForSharing_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LearningPlatformServer).GetPlansForSharing(ctx, req.(*GetPlansForSharingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1500,6 +1534,10 @@ var LearningPlatform_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsUserShareWithPlan",
 			Handler:    _LearningPlatform_IsUserShareWithPlan_Handler,
+		},
+		{
+			MethodName: "GetPlansForSharing",
+			Handler:    _LearningPlatform_GetPlansForSharing_Handler,
 		},
 		{
 			MethodName: "CreateLesson",
